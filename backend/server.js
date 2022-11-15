@@ -18,5 +18,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
 
 // Routes
+app.use("/api/v1/auth", require("./routes/authRoutes"));
 
 app.listen(port, () => console.log(`server is running on port ${port}`));
