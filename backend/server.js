@@ -19,5 +19,6 @@ app.use(errorHandler);
 
 // Routes
 app.use("/api/v1/auth", require("./routes/authRoutes"));
+app.use("/api/v1/posts", require("./routes/postRoutes"));
 
 app.listen(port, () => console.log(`server is running on port ${port}`));
