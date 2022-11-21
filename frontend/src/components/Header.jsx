@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { open } from "../features/connectModal/connectModalSlice";
+import { toggleTrue } from "../features/user/hasAccountSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -15,7 +16,13 @@ function Header() {
           <Link className="mr-5">Our Story</Link>
           <Link className="mr-5">Membership</Link>
           <Link className="mr-5">Write</Link>
-          <button className="mr-5" onClick={() => dispatch(open())}>
+          <button
+            className="mr-5"
+            onClick={() => {
+              dispatch(open());
+              dispatch(toggleTrue());
+            }}
+          >
             Sign In
           </button>
 

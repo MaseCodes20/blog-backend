@@ -6,8 +6,8 @@ import { close } from "../../features/connectModal/connectModalSlice";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 function ConnectModal() {
-  const [hasAccount, setHasAccount] = useState(true);
   const { isOpen } = useSelector((state) => state.connectModal);
+  const { hasAccount } = useSelector((state) => state.hasAccount);
   const dispatch = useDispatch();
 
   const modalRef = useRef();
@@ -31,11 +31,7 @@ function ConnectModal() {
             >
               <XMarkIcon className="h-[29px] text-gray-400" />
             </button>
-            {hasAccount ? (
-              <SignIn setHasAccount={setHasAccount} />
-            ) : (
-              <SignUp setHasAccount={setHasAccount} />
-            )}
+            {hasAccount ? <SignIn /> : <SignUp />}
           </div>
         </div>
       )}

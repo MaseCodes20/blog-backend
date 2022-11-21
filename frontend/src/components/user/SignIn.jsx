@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { useDispatch } from "react-redux";
+import { toggleFalse } from "../../features/user/hasAccountSlice";
 
-function SignIn({ setHasAccount }) {
+function SignIn() {
+  const dispatch = useDispatch();
+
   return (
     <div>
       <div>
@@ -18,7 +22,9 @@ function SignIn({ setHasAccount }) {
             <p>
               No account?{" "}
               <span className="text-green-700 font-bold">
-                <button onClick={() => setHasAccount(false)}>Create one</button>
+                <button onClick={() => dispatch(toggleFalse())}>
+                  Create one
+                </button>
               </span>
             </p>
           </div>
