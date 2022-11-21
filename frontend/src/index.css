@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .pageContainer {
+    @apply xl:mx-auto xl:max-w-6xl mx-20;
+  }
+}
