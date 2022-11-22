@@ -1,5 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { useDispatch, useSelector } from "react-redux";
+import { register, reset } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { close } from "../../features/connectModal/connectModalSlice";
 
 function SignUpForm({ setIsSignUp }) {
   const [formData, setFromData] = useState({
@@ -8,6 +13,13 @@ function SignUpForm({ setIsSignUp }) {
     password: "",
     confirmPassword: "",
   });
+
+  const { user, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { name, email, password, confirmPassword } = formData;
 
@@ -22,7 +34,28 @@ function SignUpForm({ setIsSignUp }) {
     e.preventDefault();
 
     if (password !== confirmPassword) return;
+
+    let userData = {
+      name,
+      email,
+      password,
+    };
+
+    dispatch(register(userData));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+      dispatch(close());
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, user, dispatch, navigate]);
 
   return (
     <div>
@@ -49,7 +82,7 @@ function SignUpForm({ setIsSignUp }) {
             value={name}
             onChange={handleInputs}
             className="signInOrSignUpFormInput"
-            required
+            // required
           />
         </div>
 
@@ -58,7 +91,7 @@ function SignUpForm({ setIsSignUp }) {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             value={email}
@@ -99,8 +132,8 @@ function SignUpForm({ setIsSignUp }) {
         </div>
 
         <div className="h-[20px] flex items-center justify-center">
-          {password !== confirmPassword && (
-            <p className="text-red-600 text-[13px]">Passwords don't match</p>
+          {password !== confirmPassword && confirmPassword !== "" && (
+            <p className="signInOrSignUpFormError">Passwords don't match</p>
           )}
         </div>
 

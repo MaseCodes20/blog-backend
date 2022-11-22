@@ -15,9 +15,9 @@ const initialState = {
 // Register User
 export const register = createAsyncThunk(
   "auth/register",
-  async (user, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      return await authService.register(user);
+      return await authService.register(userData);
     } catch (error) {
       const message =
         (error.response &&
@@ -32,21 +32,26 @@ export const register = createAsyncThunk(
 );
 
 // Login User
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-  try {
-    return await authService.login(user);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.login(userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 export const logout = createAsyncThunk("auth/logout", async () => {
-  await authService.logout();
+  authService.logout();
 });
 
 export const authSlice = createSlice({

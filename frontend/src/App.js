@@ -2,9 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import ConnectModal from "./components/modals/ConnectModal";
 import Home from "./pages/Home";
+import { ToastContainer, Slide } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
   return (
-    <div className="">
+    <>
       <Router>
         <Header />
         <Routes>
@@ -12,7 +15,8 @@ function App() {
         </Routes>
         <ConnectModal />
       </Router>
-    </div>
+      <ToastContainer position="top-center" transition={Slide} />
+    </>
   );
 }
 

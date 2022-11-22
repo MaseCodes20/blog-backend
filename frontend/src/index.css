@@ -60,4 +60,7 @@
   .signInOrSignUpFormButton {
     @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium;
   }
+  .signInOrSignUpFormError {
+    @apply text-red-600 text-[13px];
+  }
 }

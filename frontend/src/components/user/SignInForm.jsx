@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login, reset } from "../../features/auth/authSlice";
+import { close } from "../../features/connectModal/connectModalSlice";
 
 function SignInForm({ setIsSignIn }) {
   const [formData, setFromData] = useState({ email: "", password: "" });
+
+  const { user, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { email, password } = formData;
 
@@ -15,7 +27,28 @@ function SignInForm({ setIsSignIn }) {
 
   const submitForm = (e) => {
     e.preventDefault();
+
+    let userData = {
+      email,
+      password,
+    };
+
+    dispatch(login(userData));
   };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
+
+    if (isSuccess || user) {
+      navigate("/");
+      dispatch(close());
+    }
+
+    dispatch(reset());
+  }, [isError, isSuccess, message, user, dispatch, navigate]);
+
   return (
     <div>
       <button
@@ -35,7 +68,7 @@ function SignInForm({ setIsSignIn }) {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             id="email"
             name="email"
             value={email}
@@ -59,7 +92,7 @@ function SignInForm({ setIsSignIn }) {
         </div>
 
         <div className="h-[20px] flex items-center justify-center">
-          {false && <p className="text-red-600 text-[13px]">Error Message</p>}
+          {false && <p className="signInOrSignUpFormError">Error Message</p>}
         </div>
 
         <button className="signInOrSignUpFormButton">Sign In</button>
