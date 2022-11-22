@@ -6,4 +6,58 @@
   .pageContainer {
     @apply xl:mx-auto xl:max-w-6xl mx-20;
   }
+  .connectModalTitle {
+    @apply my-14 text-[28px];
+  }
+  .connectModalOptionsContainer {
+    @apply my-[50px];
+  }
+  .connectModalOptionsButton {
+    @apply pt-[7px] px-[16px] pb-[9px] border hover:border-black rounded-full text-[14px] flex items-center mx-auto;
+  }
+  .connectModalOptionsButtonIcon {
+    @apply h-[25px] mr-2;
+  }
+  .createOrSignInContainer {
+    @apply my-7;
+  }
+  .createOrSignInSpan {
+    @apply text-green-700 font-bold;
+  }
+  .termsAndPolicyContainer {
+    @apply md:w-[450px];
+  }
+  .termsAndPolicyPTag {
+    @apply font-light text-[13px];
+  }
+  .termsAndPolicyLink {
+    @apply underline;
+  }
+  .signInOrSignUpFormBackButton {
+    @apply absolute top-0 left-0 m-5;
+  }
+  .signInOrSignUpFormBackIcon {
+    @apply h-[28px] text-gray-400;
+  }
+  .signInOrSignUpTitle {
+    @apply text-[28px] mt-14;
+  }
+  .signInOrSignUpPTag {
+    @apply my-5 mx-auto w-[260px] text-center;
+  }
+  .signInOrSignUpFormContainer {
+    @apply mb-5;
+  }
+  .signInOrSignUpInputContainer {
+    @apply flex flex-col;
+  }
+  .signInOrSignUpFormLabel {
+    @apply my-3 text-[13px];
+  }
+  .signInOrSignUpFormInput {
+    @apply text-center border-b border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px];
+  }
+  .signInOrSignUpFormButton {
+    @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium;
+  }
 }

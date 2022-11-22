@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { open } from "../features/connectModal/connectModalSlice";
-import { toggleTrue } from "../features/user/hasAccountSlice";
+import { toggleFalse, toggleTrue } from "../features/user/hasAccountSlice";
 
 function Header() {
   const dispatch = useDispatch();
@@ -26,7 +26,13 @@ function Header() {
             Sign In
           </button>
 
-          <button className="pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium">
+          <button
+            className="pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium"
+            onClick={() => {
+              dispatch(open());
+              dispatch(toggleFalse());
+            }}
+          >
             Get Started
           </button>
         </div>
