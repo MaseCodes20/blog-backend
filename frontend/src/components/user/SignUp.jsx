@@ -3,8 +3,9 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleTrue } from "../../features/user/hasAccountSlice";
+import { selectSignUp } from "../../features/user/formSelectorSlice";
 
-function SignUp({ setIsSignUp }) {
+function SignUp() {
   const dispatch = useDispatch();
 
   return (
@@ -15,7 +16,7 @@ function SignUp({ setIsSignUp }) {
       <div className="connectModalOptionsContainer">
         <button
           className="connectModalOptionsButton"
-          onClick={() => setIsSignUp(true)}
+          onClick={() => dispatch(selectSignUp())}
         >
           <EnvelopeIcon className="connectModalOptionsButtonIcon" />{" "}
           <p>Sign up with email</p>

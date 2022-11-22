@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import { close } from "../../features/connectModal/connectModalSlice";
+import { deselectSignIn } from "../../features/user/formSelectorSlice";
 
-function SignInForm({ setIsSignIn }) {
+function SignInForm() {
   const [formData, setFromData] = useState({ email: "", password: "" });
 
   const { user, isError, isSuccess, message } = useSelector(
@@ -53,7 +54,7 @@ function SignInForm({ setIsSignIn }) {
     <div>
       <button
         className="signInOrSignUpFormBackButton"
-        onClick={() => setIsSignIn(false)}
+        onClick={() => dispatch(deselectSignIn())}
       >
         <ArrowUturnLeftIcon className="signInOrSignUpFormBackIcon" />
       </button>

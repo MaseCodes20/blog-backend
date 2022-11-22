@@ -5,8 +5,9 @@ import { register, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { close } from "../../features/connectModal/connectModalSlice";
+import { deselectSignUp } from "../../features/user/formSelectorSlice";
 
-function SignUpForm({ setIsSignUp }) {
+function SignUpForm() {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
@@ -61,7 +62,7 @@ function SignUpForm({ setIsSignUp }) {
     <div>
       <button
         className="signInOrSignUpFormBackButton"
-        onClick={() => setIsSignUp(false)}
+        onClick={() => dispatch(deselectSignUp())}
       >
         <ArrowUturnLeftIcon className="signInOrSignUpFormBackIcon" />
       </button>
