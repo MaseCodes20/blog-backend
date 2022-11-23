@@ -12,9 +12,9 @@ function Header() {
   return (
     <div className="bg-yellow-400 h-[75px]">
       <div className="flex items-center justify-between py-[25px] pageContainer">
-        <div className="w-161">
+        <Link to="/" className="w-161">
           <h1>Logo</h1>
-        </div>
+        </Link>
         <div className="flex items-center text-[14px] h-[25px]">
           <Link className="mr-5">Our Story</Link>
           <Link className="mr-5">Membership</Link>

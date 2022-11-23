@@ -63,4 +63,7 @@
   .signInOrSignUpFormError {
     @apply text-red-600 text-[13px];
   }
+  .TOSPTag {
+    @apply my-5 text-[20px];
+  }
 }

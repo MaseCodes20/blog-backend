@@ -4,6 +4,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 import { toggleFalse } from "../../features/user/hasAccountSlice";
 import { selectSignIn } from "../../features/user/formSelectorSlice";
+import { close } from "../../features/connectModal/connectModalSlice";
 
 function SignIn() {
   const dispatch = useDispatch();
@@ -47,11 +48,23 @@ function SignIn() {
         <p className="termsAndPolicyPTag">
           Click "Sign in" to agrees to Blog's{" "}
           <span>
-            <Link className="termsAndPolicyLink">Terms of Service</Link>
+            <Link
+              to="/blog-terms-of-service"
+              onClick={() => dispatch(close())}
+              className="termsAndPolicyLink"
+            >
+              Terms of Service
+            </Link>
           </span>{" "}
           and acknowledge that Blog's{" "}
           <span>
-            <Link className="termsAndPolicyLink">Privacy Policy</Link>
+            <Link
+              to="/blog-privacy-policy"
+              onClick={() => dispatch(close())}
+              className="termsAndPolicyLink"
+            >
+              Privacy Policy
+            </Link>
           </span>{" "}
           applies to you
         </p>
