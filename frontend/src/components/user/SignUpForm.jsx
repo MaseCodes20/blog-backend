@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { EyeIcon } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { register, reset } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { close } from "../../features/connectModal/connectModalSlice";
 import { deselectSignUp } from "../../features/user/formSelectorSlice";
+import ShowPasswordButton from "./ShowPasswordButton";
 
 function SignUpForm() {
   const [formData, setFromData] = useState({
@@ -14,6 +16,7 @@ function SignUpForm() {
     password: "",
     confirmPassword: "",
   });
+  const [passwordInputType, setPasswordInputType] = useState("password");
 
   const { user, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -43,6 +46,14 @@ function SignUpForm() {
     };
 
     dispatch(register(userData));
+  };
+
+  const showConfirmPassword = () => {
+    if (passwordInputType === "password") {
+      setPasswordInputType("text");
+    } else {
+      setPasswordInputType("password");
+    }
   };
 
   useEffect(() => {
@@ -117,12 +128,12 @@ function SignUpForm() {
           />
         </div>
 
-        <div className="flex flex-col">
+        <div className="relative flex flex-col">
           <label htmlFor="confirmPassword" className="signInOrSignUpFormLabel">
             Confirm password
           </label>
           <input
-            type="password"
+            type={passwordInputType}
             id="confirmPassword"
             name="confirmPassword"
             value={confirmPassword}
@@ -130,15 +141,24 @@ function SignUpForm() {
             className="signInOrSignUpFormInput"
             required
           />
-        </div>
-
-        <div className="h-[20px] flex items-center justify-center">
-          {password !== confirmPassword && confirmPassword !== "" && (
-            <p className="signInOrSignUpFormError">Passwords don't match</p>
+          {confirmPassword !== "" && (
+            <ShowPasswordButton showFunction={showConfirmPassword} />
           )}
         </div>
 
-        <button className="signInOrSignUpFormButton">Sign In</button>
+        <div className="h-[20px] flex items-center justify-center">
+          {password !== confirmPassword &&
+            confirmPassword !== "" &&
+            password && (
+              <p className="signInOrSignUpFormError">Passwords don't match</p>
+            )}
+        </div>
+
+        <input
+          type="submit"
+          value="Sign up"
+          className="signInOrSignUpFormButton"
+        />
       </form>
     </div>
   );

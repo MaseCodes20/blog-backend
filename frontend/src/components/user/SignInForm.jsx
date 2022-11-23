@@ -6,9 +6,11 @@ import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
 import { close } from "../../features/connectModal/connectModalSlice";
 import { deselectSignIn } from "../../features/user/formSelectorSlice";
+import ShowPasswordButton from "./ShowPasswordButton";
 
 function SignInForm() {
   const [formData, setFromData] = useState({ email: "", password: "" });
+  const [passwordInputType, setPasswordInputType] = useState("password");
 
   const { user, isError, isSuccess, message } = useSelector(
     (state) => state.auth
@@ -29,12 +31,22 @@ function SignInForm() {
   const submitForm = (e) => {
     e.preventDefault();
 
+    if (email === "") return;
+
     let userData = {
       email,
       password,
     };
 
     dispatch(login(userData));
+  };
+
+  const showPassword = () => {
+    if (passwordInputType === "password") {
+      setPasswordInputType("text");
+    } else {
+      setPasswordInputType("password");
+    }
   };
 
   useEffect(() => {
@@ -75,28 +87,35 @@ function SignInForm() {
             value={email}
             onChange={handleInputs}
             className="signInOrSignUpFormInput"
+            required
           />
         </div>
 
-        <div className="flex flex-col">
+        <div className="relative flex flex-col">
           <label htmlFor="password" className="signInOrSignUpFormLabel">
             Password
           </label>
           <input
-            type="password"
+            type={passwordInputType}
             id="password"
             name="password"
             value={password}
             onChange={handleInputs}
             className="signInOrSignUpFormInput"
           />
+
+          {password && <ShowPasswordButton showFunction={showPassword} />}
         </div>
 
         <div className="h-[20px] flex items-center justify-center">
           {false && <p className="signInOrSignUpFormError">Error Message</p>}
         </div>
 
-        <button className="signInOrSignUpFormButton">Sign In</button>
+        <input
+          type="submit"
+          value="Sign in"
+          className="signInOrSignUpFormButton"
+        />
       </form>
     </div>
   );

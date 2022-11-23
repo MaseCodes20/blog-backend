@@ -58,7 +58,7 @@
     @apply text-center border-b border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px];
   }
   .signInOrSignUpFormButton {
-    @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium;
+    @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium cursor-pointer;
   }
   .signInOrSignUpFormError {
     @apply text-red-600 text-[13px];

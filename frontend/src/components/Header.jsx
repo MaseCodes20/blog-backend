@@ -8,6 +8,7 @@ import { logout } from "../features/auth/authSlice";
 function Header() {
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+
   return (
     <div className="bg-yellow-400 h-[75px]">
       <div className="flex items-center justify-between py-[25px] pageContainer">
