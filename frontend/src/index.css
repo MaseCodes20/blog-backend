@@ -6,6 +6,9 @@
   .pageContainer {
     @apply xl:mx-auto xl:max-w-6xl mx-20;
   }
+  .creators {
+    @apply bg-[#F24D2E];
+  }
   .connectModalTitle {
     @apply my-14 text-[28px];
   }

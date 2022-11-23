@@ -6,26 +6,36 @@ import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import BlogTermsOfService from "./pages/BlogTermsOfService";
 import BlogPrivacyPolicy from "./pages/BlogPrivacyPolicy";
+import Creators from "./pages/Creators";
 
 function App() {
   return (
     <>
       <Router>
         <Header />
+
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
+
+        <Routes>
+          <Route path="/creators" element={<Creators />} />
+        </Routes>
+
         <Routes>
           <Route
             path="/blog-terms-of-service"
             element={<BlogTermsOfService />}
           />
         </Routes>
+
         <Routes>
           <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
         </Routes>
+
         <ConnectModal />
       </Router>
+
       <ToastContainer position="top-center" transition={Slide} />
     </>
   );
