@@ -37,7 +37,7 @@ const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.userID);
 
   if (!user) {
-    res.status(400);
+    res.status(404);
     throw new Error("User does not exist");
   }
 

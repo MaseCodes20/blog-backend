@@ -50,7 +50,7 @@ const getUserPosts = asyncHandler(async (req, res) => {
 const setPost = asyncHandler(async (req, res) => {
   try {
     const post = await Post.create(req.body);
-    res.status(200).json(post);
+    res.status(201).json(post);
   } catch (error) {
     res.status(500);
     throw new Error(error);
@@ -64,7 +64,7 @@ const updatePost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.postId);
 
   if (!post) {
-    res.status(400);
+    res.status(404);
     throw new Error("Post does not exist");
   }
 

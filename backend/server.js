@@ -15,10 +15,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(errorHandler);
 
 // Routes
 app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/posts", require("./routes/postRoutes"));
+
+// ERROR HANDLER MIDDLEWARE (Last middleware to use)
+app.use(errorHandler);
 
 app.listen(port, () => console.log(`server is running on port ${port}`));
