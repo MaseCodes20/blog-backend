@@ -13,7 +13,7 @@ function Header() {
 
   return (
     <div
-      className={`h-[75px] border-b-[1px] border-black
+      className={`h-[75px] border-b-[1px] border-black sticky top-0
         ${location === "/" ? "bg-yellow-500" : location.split("/")[1]}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
