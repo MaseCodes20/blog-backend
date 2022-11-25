@@ -4,17 +4,38 @@ import { Link, useLocation } from "react-router-dom";
 import { open } from "../features/connectModal/connectModalSlice";
 import { toggleFalse, toggleTrue } from "../features/user/hasAccountSlice";
 import { logout } from "../features/auth/authSlice";
+import { useEffect } from "react";
+import { useState } from "react";
 
 function Header() {
+  const [bgColor, setbgColor] = useState("");
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   let location = useLocation().pathname;
 
+  const headerColor = location.split("/")[1];
+
+  const listenScrollEvent = (event) => {
+    if (window.scrollY > 680) {
+      setbgColor("bg-white");
+    } else if (window.scrollY < 680) {
+      setbgColor(headerColor);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", listenScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", listenScrollEvent);
+    };
+  }, []);
+
   return (
     <div
       className={`h-[75px] border-b-[1px] border-black sticky top-0
-        ${location === "/" ? "bg-yellow-500" : location.split("/")[1]}`}
+        ${location === "/" ? "bg-yellow-500" : bgColor || headerColor}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
         <Link to="/" className="w-161">

@@ -15,7 +15,7 @@ function JoinSection() {
   }, []);
 
   return (
-    <div className="bg-black text-white">
+    <section className="bg-black text-white">
       <div className="flex pageContainer py-10">
         <div className="flex-[2]">
           <p className="text-[78px] max-w-[575px] leading-none">
@@ -25,7 +25,10 @@ function JoinSection() {
         <div className="flex-[2]">
           {curriousMinds.map((writer) => {
             return (
-              <div className="flex items-center py-[10px] border-white border-t-[.08px] border-b-[.08px]">
+              <div
+                key={writer.id}
+                className="flex items-center py-[10px] border-white border-t-[.08px] border-b-[.08px]"
+              >
                 <img
                   src={
                     writer.profilePicture ||
@@ -45,7 +48,7 @@ function JoinSection() {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

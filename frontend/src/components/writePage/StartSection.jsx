@@ -2,11 +2,12 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { open } from "../../features/connectModal/connectModalSlice";
 import { toggleFalse } from "../../features/user/hasAccountSlice";
+import StartWritingButton from "./StartWritingButton";
 
 function StartSection() {
   const dispatch = useDispatch();
   return (
-    <div className="bg-[#F24D2E]">
+    <section className="bg-[#F24D2E]">
       <div className="flex pageContainer">
         <div className="flex-[6] p-10 border-r-[1px] border-black">
           <h1 className="uppercase mt-14 text-white font-bold text-[11px] tracking-[0.75em]">
@@ -23,19 +24,11 @@ function StartSection() {
             in a network supported by millions of readers --- not ads
           </p>
 
-          <button
-            className="pt-[9px] px-[32px] pb-[10px] mt-10 rounded-[21px] border-white border-2 bg-white hover:bg-[#F24D2E] text-black text-[18px]"
-            onClick={() => {
-              dispatch(open());
-              dispatch(toggleFalse());
-            }}
-          >
-            Start writing
-          </button>
+          <StartWritingButton buttonColors={`creatorsButtonStart`} />
         </div>
         <div className="flex-[2] p-10">image</div>
       </div>
-    </div>
+    </section>
   );
 }
 
