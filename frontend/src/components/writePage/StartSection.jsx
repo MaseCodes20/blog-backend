@@ -1,11 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { open } from "../../features/connectModal/connectModalSlice";
-import { toggleFalse } from "../../features/user/hasAccountSlice";
 import StartWritingButton from "./StartWritingButton";
 
 function StartSection() {
-  const dispatch = useDispatch();
   return (
     <section className="bg-[#F24D2E]">
       <div className="flex pageContainer">

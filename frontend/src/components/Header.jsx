@@ -20,7 +20,7 @@ function Header() {
     if (window.scrollY > 680) {
       setbgColor("bg-white");
     } else if (window.scrollY < 680) {
-      setbgColor(headerColor);
+      setbgColor("");
     }
   };
 
@@ -35,7 +35,7 @@ function Header() {
   return (
     <div
       className={`h-[75px] border-b-[1px] border-black sticky top-0
-        ${location === "/" ? "bg-yellow-500" : bgColor || headerColor}`}
+        ${location === "/" ? "home" : bgColor || headerColor}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
         <Link to="/" className="w-161">
