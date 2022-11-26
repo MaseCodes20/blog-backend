@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { open } from "../features/connectModal/connectModalSlice";
 import { toggleFalse, toggleTrue } from "../features/user/hasAccountSlice";
-import { logout } from "../features/auth/authSlice";
 import { useEffect } from "react";
 import { useState } from "react";
+import UserMenu from "./user/UserMenu";
+import { PencilAltIcon } from "@heroicons/react/solid";
 
 function Header() {
   const [bgColor, setbgColor] = useState("");
@@ -43,14 +44,7 @@ function Header() {
         </Link>
         <div className="flex items-center text-[14px] h-[25px]">
           {user ? (
-            <>
-              <button
-                className="signInSignOutButton"
-                onClick={() => dispatch(logout())}
-              >
-                Sign out
-              </button>
-            </>
+            <UserMenu />
           ) : (
             <>
               <Link to="/about" className="mr-5">

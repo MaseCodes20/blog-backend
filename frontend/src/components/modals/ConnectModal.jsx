@@ -3,7 +3,7 @@ import SignIn from "../user/SignIn";
 import SignUp from "../user/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { close } from "../../features/connectModal/connectModalSlice";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { XIcon } from "@heroicons/react/outline";
 import SignInForm from "../user/SignInForm";
 import SignUpForm from "../user/SignUpForm";
 import { resetFormSelector } from "../../features/user/formSelectorSlice";
@@ -39,7 +39,7 @@ function ConnectModal() {
                 dispatch(resetFormSelector());
               }}
             >
-              <XMarkIcon className="h-[29px] text-gray-400" />
+              <XIcon className="h-[29px] text-gray-400" />
             </button>
 
             {isSignIn || isSignUp ? (

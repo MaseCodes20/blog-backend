@@ -1,4 +1,4 @@
-import { EyeIcon } from "@heroicons/react/24/outline";
+import { EyeIcon } from "@heroicons/react/outline";
 import React from "react";
 
 function ShowPasswordButton({ showFunction }) {

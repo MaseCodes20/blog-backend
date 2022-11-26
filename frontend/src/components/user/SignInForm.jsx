@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ArrowUturnLeftIcon } from "@heroicons/react/24/solid";
+import { ArrowNarrowLeftIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -68,7 +68,7 @@ function SignInForm() {
         className="signInOrSignUpFormBackButton"
         onClick={() => dispatch(deselectSignIn())}
       >
-        <ArrowUturnLeftIcon className="signInOrSignUpFormBackIcon" />
+        <ArrowNarrowLeftIcon className="signInOrSignUpFormBackIcon" />
       </button>
 
       <h1 className="signInOrSignUpTitle">Sign in with email</h1>

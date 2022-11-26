@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { EnvelopeIcon } from "@heroicons/react/24/outline";
+import { MailIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
 import { toggleFalse } from "../../features/user/hasAccountSlice";
 import { selectSignIn } from "../../features/user/formSelectorSlice";
@@ -19,7 +19,7 @@ function SignIn() {
           className="connectModalOptionsButton"
           onClick={() => dispatch(selectSignIn())}
         >
-          <EnvelopeIcon className="connectModalOptionsButtonIcon" />{" "}
+          <MailIcon className="connectModalOptionsButtonIcon" />{" "}
           <p>Sign in with email</p>
         </button>
 

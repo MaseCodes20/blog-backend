@@ -15,7 +15,7 @@ function NetworkSection() {
   }, []);
 
   return (
-    <div className="border-b-[1px] border-black bg-[#FFD1B9]">
+    <section className="border-b-[1px] border-black bg-[#FFD1B9]">
       <div className="pageContainer py-[66px]">
         <div className="max-w-[965px] mx-auto">
           <h1 className="text-[94px] text-center font-semibold leading-none">
@@ -55,7 +55,7 @@ function NetworkSection() {
           })}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

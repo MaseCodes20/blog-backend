@@ -2,7 +2,7 @@ import React from "react";
 
 function AboutSection() {
   return (
-    <div className="border-b-[1px] border-black">
+    <section className="border-b-[1px] border-black">
       <div className="pageContainer flex">
         <div className="flex-[2] py-10 pr-20 border-r-[1px] border-black font-semibold">
           <p className="mb-5">
@@ -41,7 +41,7 @@ function AboutSection() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
