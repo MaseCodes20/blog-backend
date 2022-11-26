@@ -42,16 +42,24 @@ function Header() {
           <h1>Logo</h1>
         </Link>
         <div className="flex items-center text-[14px] h-[25px]">
-          <Link className="mr-5">Our Story</Link>
-          <Link className="mr-5">Membership</Link>
-          <Link to="/creators" className="mr-5">
-            Write
-          </Link>
-
           {user ? (
-            <button onClick={() => dispatch(logout())}>User</button>
+            <>
+              <button
+                className="signInSignOutButton"
+                onClick={() => dispatch(logout())}
+              >
+                Sign out
+              </button>
+            </>
           ) : (
             <>
+              <Link className="mr-5">Our Story</Link>
+
+              <Link className="mr-5">Membership</Link>
+
+              <Link to="/creators" className="mr-5">
+                Write
+              </Link>
               <button
                 className="mr-5"
                 onClick={() => {
@@ -63,7 +71,7 @@ function Header() {
               </button>
 
               <button
-                className="pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium"
+                className="signInSignOutButton"
                 onClick={() => {
                   dispatch(open());
                   dispatch(toggleFalse());
