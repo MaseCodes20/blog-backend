@@ -53,7 +53,9 @@ function Header() {
             </>
           ) : (
             <>
-              <Link className="mr-5">Our Story</Link>
+              <Link to="/about" className="mr-5">
+                Our Story
+              </Link>
 
               <Link className="mr-5">Membership</Link>
 

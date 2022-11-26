@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import BlogTermsOfService from "./pages/BlogTermsOfService";
 import BlogPrivacyPolicy from "./pages/BlogPrivacyPolicy";
 import Creators from "./pages/Creators";
+import OurStory from "./pages/OurStory";
 
 function App() {
   return (
@@ -16,20 +17,16 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} />
-        </Routes>
 
-        <Routes>
+          <Route path="/about" element={<OurStory />} />
+
           <Route path="/creators" element={<Creators />} />
-        </Routes>
 
-        <Routes>
           <Route
             path="/blog-terms-of-service"
             element={<BlogTermsOfService />}
           />
-        </Routes>
 
-        <Routes>
           <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
         </Routes>
 
