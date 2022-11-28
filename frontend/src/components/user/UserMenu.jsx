@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-import { ArrowDownIcon } from "@heroicons/react/solid";
 import {
   BookmarkIcon,
   FolderRemoveIcon,
@@ -9,6 +8,7 @@ import {
 } from "@heroicons/react/outline";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { openPostModal } from "../../features/modals/postModalSlice";
 
 function UserMenu() {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ function UserMenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-[22px] mr-[220px] w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-[19px] mr-[220px] w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             <Menu.Item>
               {({ active }) => (
@@ -56,6 +56,7 @@ function UserMenu() {
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}
+                  onClick={() => dispatch(openPostModal())}
                 >
                   <PencilAltIcon className="h-5 mr-5" /> Write
                 </button>

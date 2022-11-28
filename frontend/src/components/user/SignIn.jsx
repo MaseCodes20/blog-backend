@@ -4,7 +4,7 @@ import { MailIcon } from "@heroicons/react/outline";
 import { useDispatch } from "react-redux";
 import { toggleFalse } from "../../features/user/hasAccountSlice";
 import { selectSignIn } from "../../features/user/formSelectorSlice";
-import { close } from "../../features/connectModal/connectModalSlice";
+import { close } from "../../features/modals/connectModalSlice";
 
 function SignIn() {
   const dispatch = useDispatch();

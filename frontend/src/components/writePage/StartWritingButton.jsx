@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { open } from "../../features/connectModal/connectModalSlice";
+import { open } from "../../features/modals/connectModalSlice";
 import { toggleFalse } from "../../features/user/hasAccountSlice";
 
 function StartWritingButton({ buttonColors }) {

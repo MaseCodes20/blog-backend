@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { toggleTrue } from "../../features/user/hasAccountSlice";
 import { selectSignUp } from "../../features/user/formSelectorSlice";
-import { close } from "../../features/connectModal/connectModalSlice";
+import { close } from "../../features/modals/connectModalSlice";
 
 function SignUp() {
   const dispatch = useDispatch();

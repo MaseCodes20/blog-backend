@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../../features/auth/authSlice";
-import { close } from "../../features/connectModal/connectModalSlice";
+import { close } from "../../features/modals/connectModalSlice";
 import { deselectSignIn } from "../../features/user/formSelectorSlice";
 import ShowPasswordButton from "./ShowPasswordButton";
 

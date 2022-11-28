@@ -8,6 +8,7 @@ import BlogTermsOfService from "./pages/BlogTermsOfService";
 import BlogPrivacyPolicy from "./pages/BlogPrivacyPolicy";
 import Creators from "./pages/Creators";
 import OurStory from "./pages/OurStory";
+import PostModal from "./components/modals/PostModal";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
         </Routes>
 
+        <PostModal />
         <ConnectModal />
       </Router>
 

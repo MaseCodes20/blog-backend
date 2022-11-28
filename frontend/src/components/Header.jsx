@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import { open } from "../features/connectModal/connectModalSlice";
+import { open } from "../features/modals/connectModalSlice";
 import { toggleFalse, toggleTrue } from "../features/user/hasAccountSlice";
 import { useEffect } from "react";
 import { useState } from "react";
 import UserMenu from "./user/UserMenu";
-import { PencilAltIcon } from "@heroicons/react/solid";
+import { SearchIcon } from "@heroicons/react/solid";
 
 function Header() {
   const [bgColor, setbgColor] = useState("");
@@ -35,13 +35,28 @@ function Header() {
 
   return (
     <div
-      className={`h-[75px] border-b-[1px] border-black sticky top-0
+      className={`h-[75px] border-b-[1px] border-black sticky top-0 z-10
         ${location === "/" ? "home" : bgColor || headerColor}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
         <Link to="/" className="w-161">
-          <h1>Logo</h1>
+          <h1>devLog(s)</h1>
         </Link>
+
+        <div className="relative h-[30px]">
+          <div className="absolute left-0 ml-2 h-full flex items-center">
+            <SearchIcon className="h-4" />
+          </div>
+
+          <input
+            type="text"
+            name="search"
+            id=""
+            className="w-[600px] h-[30px] pl-8"
+            placeholder="search..."
+          />
+        </div>
+
         <div className="flex items-center text-[14px] h-[25px]">
           {user ? (
             <UserMenu />
