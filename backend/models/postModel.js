@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
+    userId: { type: String, required: true },
     title: {
       type: String,
       required: [true, "Post title is required"],
@@ -10,9 +11,6 @@ const postSchema = new mongoose.Schema(
       type: String,
     },
     content: {
-      type: String,
-    },
-    author: {
       type: String,
     },
     comments: [

@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 app.use("/api/v1/auth", require("./routes/authRoutes"));
+app.use("/api/v1/users", require("./routes/userRoutes"));
 app.use("/api/v1/posts", require("./routes/postRoutes"));
 
 // ERROR HANDLER MIDDLEWARE (Last middleware to use)

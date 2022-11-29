@@ -3,7 +3,6 @@ const router = express.Router();
 
 const {
   verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
 } = require("../middlewares/authMiddleware");
 const {
   getAllUsers,
@@ -12,7 +11,7 @@ const {
   deleteUser,
 } = require("../controllers/userController");
 
-router.route("/").get(verifyTokenAndAdmin, getAllUsers);
+router.route("/").get(getAllUsers);
 router
   .route("/:userID")
   .get(getUser)
