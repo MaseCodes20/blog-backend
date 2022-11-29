@@ -9,14 +9,15 @@ import {
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { openPostModal } from "../../features/modals/postModalSlice";
+import { Link } from "react-router-dom";
 
 function UserMenu() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
 
   return (
-    <Menu as="div" className="">
-      <Menu.Button className="mr-5 flex items-center justify-center">
+    <Menu as="div" className="relative">
+      <Menu.Button className="md:mr-5 flex items-center justify-center">
         <img
           src={
             user.profilePicture ||
@@ -35,17 +36,18 @@ function UserMenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-[19px] mr-[220px] w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-[19px] md:mr-5 w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             <Menu.Item>
               {({ active }) => (
-                <button
+                <Link
+                  to="/profile"
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}
                 >
                   <UserIcon className="h-5 mr-5" /> Profile
-                </button>
+                </Link>
               )}
             </Menu.Item>
           </div>

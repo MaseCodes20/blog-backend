@@ -39,7 +39,7 @@ function Header() {
         ${location === "/" ? "home" : bgColor || headerColor}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
-        <Link to="/" className="w-161">
+        <Link to="/">
           <h1>devLog(s)</h1>
         </Link>
 
@@ -52,7 +52,7 @@ function Header() {
             type="text"
             name="search"
             id=""
-            className="w-[600px] h-[30px] pl-8"
+            className="md:w-[600px] h-[30px] pl-8"
             placeholder="search..."
           />
         </div>

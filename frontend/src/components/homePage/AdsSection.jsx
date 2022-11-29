@@ -33,7 +33,7 @@ const Ads = [
 
 function AdsSection() {
   return (
-    <div className="p-5 flex-[2]">
+    <div className="p-5 hidden md:flex flex-[2]">
       <div className="grid grid-cols-1 gap-10">
         {Ads.map((ad) => {
           return (
