@@ -11,9 +11,9 @@ const initialState = {
 };
 
 // Get users
-export const allUsers = createAsyncThunk("users", async (data, thunkAPI) => {
+export const allUsers = createAsyncThunk("users", async (_, thunkAPI) => {
   try {
-    return await usersService.getUsers(data);
+    return await usersService.getUsers();
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||

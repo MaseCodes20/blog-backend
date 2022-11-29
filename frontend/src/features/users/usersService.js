@@ -3,10 +3,8 @@ import axios from "axios";
 const API_URL = "/api/v1/users";
 
 // Get all Users in Database
-const getUsers = async (token) => {
-  const response = await axios.get(API_URL, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+const getUsers = async () => {
+  const response = await axios.get(API_URL);
 
   return response.data;
 };

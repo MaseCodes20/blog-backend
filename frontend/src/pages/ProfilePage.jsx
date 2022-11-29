@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ProfilePosts from "../components/profilePage/ProfilePosts";
 
 function ProfilePage() {
-  const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+
   return (
     <div className="pageContainer">
       <div className="w-full h-[206px] flex items-center justify-center bg-gray-200">
