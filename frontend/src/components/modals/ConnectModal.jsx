@@ -1,9 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import SignIn from "../user/SignIn";
 import SignUp from "../user/SignUp";
 import { useDispatch, useSelector } from "react-redux";
 import { close } from "../../features/modals/connectModalSlice";
-import { XIcon } from "@heroicons/react/outline";
 import SignInForm from "../user/SignInForm";
 import SignUpForm from "../user/SignUpForm";
 import { resetFormSelector } from "../../features/user/formSelectorSlice";

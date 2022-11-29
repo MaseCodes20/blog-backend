@@ -55,7 +55,7 @@
     @apply absolute top-0 left-0 m-5;
   }
   .signInOrSignUpFormBackIcon {
-    @apply h-[28px] text-gray-400;
+    @apply h-[28px] text-gray-400 hover:text-black;
   }
   .signInOrSignUpTitle {
     @apply text-[28px] mt-14;

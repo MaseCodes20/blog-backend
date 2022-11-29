@@ -6,24 +6,28 @@ const Ads = [
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6a6N6vyk_I8goH0KsflNyLC6dZUqqUuylrA&usqp=CAU",
     companyName: "Advertisment",
+    id: 1,
   },
   {
     url: "",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6a6N6vyk_I8goH0KsflNyLC6dZUqqUuylrA&usqp=CAU",
     companyName: "Advertisment",
+    id: 2,
   },
   {
     url: "",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6a6N6vyk_I8goH0KsflNyLC6dZUqqUuylrA&usqp=CAU",
     companyName: "Advertisment",
+    id: 3,
   },
   {
     url: "",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6a6N6vyk_I8goH0KsflNyLC6dZUqqUuylrA&usqp=CAU",
     companyName: "Advertisment",
+    id: 4,
   },
 ];
 
@@ -33,7 +37,7 @@ function AdsSection() {
       <div className="grid grid-cols-1 gap-10">
         {Ads.map((ad) => {
           return (
-            <button className="relative">
+            <button className="relative" key={ad.id}>
               <img
                 src={ad.image}
                 alt=""

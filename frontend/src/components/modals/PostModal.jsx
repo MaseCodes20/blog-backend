@@ -2,13 +2,13 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closePostModal } from "../../features/modals/postModalSlice";
 import CloseModalButton from "./CloseModalButton";
+import PostModalForm from "./PostModalForm";
 
 function PostModal() {
   const { isPostModalOpen } = useSelector((state) => state.postModal);
 
   const dispatch = useDispatch();
   const postModalRef = useRef();
-  const closePostModalRef = useRef();
 
   const closeModal = (e) => {
     if (postModalRef.current === e.target) {
@@ -30,6 +30,8 @@ function PostModal() {
         >
           <div className="relative md:w-[560px] md:h-[600px] flex justify-center items-center text-center py-[44px] px-[56px] bg-white shadow-lg">
             <CloseModalButton closeFunction={closeButton} />
+
+            <PostModalForm />
           </div>
         </div>
       )}
