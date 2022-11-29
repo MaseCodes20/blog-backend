@@ -17,7 +17,7 @@ function UserMenu() {
 
   return (
     <Menu as="div" className="relative">
-      <Menu.Button className="md:mr-5 flex items-center justify-center">
+      <Menu.Button className=" flex items-center justify-center">
         <img
           src={
             user.profilePicture ||
@@ -36,7 +36,7 @@ function UserMenu() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-[19px] md:mr-5 w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 mt-[19px]  w-56 origin-top-right divide-y border-[1px] border-black bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             <Menu.Item>
               {({ active }) => (

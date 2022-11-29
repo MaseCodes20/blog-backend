@@ -12,6 +12,9 @@
   .home {
     @apply bg-yellow-500;
   }
+  .profile {
+    @apply bg-white;
+  }
   .creators {
     @apply bg-[#F24D2E];
   }

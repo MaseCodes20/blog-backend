@@ -10,6 +10,7 @@ import Creators from "./pages/Creators";
 import OurStory from "./pages/OurStory";
 import PostModal from "./components/modals/PostModal";
 import ProfilePage from "./pages/ProfilePage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -31,7 +32,14 @@ function App() {
 
           <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
 
-          <Route path="/profile" element={<ProfilePage />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
 
         <PostModal />
