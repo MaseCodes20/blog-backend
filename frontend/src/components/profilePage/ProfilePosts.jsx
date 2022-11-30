@@ -2,9 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Post from "../Post";
 
-function ProfilePosts({ user }) {
+function ProfilePosts({ author }) {
   const posts = useSelector((state) =>
-    state.posts.posts.filter((post) => post.userId === user._id)
+    state.posts.posts.filter((post) => post.userId === author?._id)
   );
   return (
     <div className="grid grid-cols-2 justify-items-center gap-5 my-10">

@@ -8,10 +8,10 @@ function ProfilePage() {
 
   return (
     <div className="pageContainer">
-      <ProfileHeader user={user} />
+      <ProfileHeader author={user} />
 
       {/* Posts */}
-      <ProfilePosts user={user} />
+      <ProfilePosts author={user} />
     </div>
   );
 }
