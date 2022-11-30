@@ -6,7 +6,9 @@ const API_URL = "api/v1/posts";
 const getPosts = async () => {
   const response = await axios.get(API_URL);
 
-  return response.data;
+  return response.data.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 };
 
 // Add Post to Database
