@@ -1,10 +1,14 @@
 import { CameraIcon } from "@heroicons/react/outline";
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost } from "../../features/post/postsSlice";
+import { addPost, reset } from "../../features/post/postsSlice";
+import { toast } from "react-toastify";
+import { closePostModal } from "../../features/modals/postModalSlice";
+import { useNavigate } from "react-router-dom";
 
 function PostModalForm() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -13,16 +17,25 @@ function PostModalForm() {
     title: "",
     content: "",
   });
+  const [categories, setCategpries] = useState([]);
 
   const { title, content } = inputs;
 
   const { user } = useSelector((state) => state.auth);
+  const { isError, isSuccess, newPost, message } = useSelector(
+    (state) => state.posts
+  );
 
   const filePickerRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleCategories = (e) => {
+    setCategpries(e.target.value.split(","));
   };
 
   const getImageUrl = async () => {
@@ -71,18 +84,35 @@ function PostModalForm() {
       token: user.token,
     };
 
+    if (categories.length >= 1) {
+      data.postData.categories = categories;
+    }
+
     if (selectedImage) {
       const imageURL = await getImageUrl();
       data.postData.image = imageURL;
       dispatch(addPost(data));
+    } else {
+      dispatch(addPost(data));
+    }
+  };
+
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
     }
 
-    dispatch(addPost(data));
-  };
+    if (isSuccess && newPost) {
+      navigate("/profile");
+      dispatch(closePostModal());
+    }
+
+    dispatch(reset());
+  }, [message, isError, isSuccess, dispatch, navigate]);
 
   return (
     <form className="my-5 w-full h-full" onSubmit={submitForm}>
-      <div className="flex flex-col mb-5">
+      <div className="flex flex-col mb-2">
         <label htmlFor="title" className="text-left text-[13px]">
           Title
         </label>
@@ -98,13 +128,13 @@ function PostModalForm() {
       {displayedImage ? (
         <img
           src={displayedImage}
-          className="w-full h-[150px] object-contain mb-5"
+          className="w-full h-[150px] object-contain mb-2"
           alt=""
           onClick={() => setDisplayedImage(null)}
         />
       ) : (
         <div
-          className="w-full h-[150px] bg-gray-100 flex items-center justify-center cursor-pointer mb-5"
+          className="w-full h-[150px] bg-gray-100 flex items-center justify-center cursor-pointer mb-2"
           onClick={() => filePickerRef.current.click()}
         >
           <CameraIcon className="h-10 w-10 text-red-600" aria-hidden="true" />
@@ -120,7 +150,7 @@ function PostModalForm() {
         hidden
       />
 
-      <div className="flex flex-col mb-5">
+      <div className="flex flex-col mb-2">
         <label htmlFor="content" className="text-left text-[13px]">
           Content
         </label>
@@ -129,6 +159,20 @@ function PostModalForm() {
           id="content"
           onChange={handleChange}
           className="border p-2 border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black h-[200px] box-border resize-none"
+        />
+      </div>
+
+      <div className="flex flex-col mb-2">
+        <label htmlFor="categories" className="text-left text-[13px]">
+          Categories{" "}
+          <span className="text-[10px]">(separate categories by a comma)</span>
+        </label>
+        <input
+          type="text"
+          name="categories"
+          id="categories"
+          onChange={handleCategories}
+          className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>
 

@@ -13,6 +13,9 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
     },
+    categories: {
+      type: Array,
+    },
     comments: [
       {
         userId: { type: String, required: true },

@@ -43,7 +43,9 @@ function Post({ post, userId }) {
 
         <h1 className="text-[28px] font-semibold">{post.title}</h1>
 
-        <p className="w-[240px] text-[20px] truncate">{post.content}</p>
+        <p className="w-[160px] md:w-[240px] text-[20px] truncate">
+          {post.content}
+        </p>
 
         <p>{date.toLocaleString(undefined, options)}</p>
       </div>
