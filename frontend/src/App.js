@@ -12,6 +12,7 @@ import PostModal from "./components/modals/PostModal";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PostPage from "./pages/PostPage";
+import AuthorProfilePage from "./pages/AuthorProfilePage";
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
           <Route path="/creators" element={<Creators />} />
 
           <Route path="/post/:id" element={<PostPage />} />
+
+          <Route path="/profile/:id" element={<AuthorProfilePage />} />
 
           <Route
             path="/blog-terms-of-service"

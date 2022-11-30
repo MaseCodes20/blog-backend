@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function PostPage() {
   const location = useLocation();
@@ -10,8 +10,8 @@ function PostPage() {
     state.posts.posts.find((post) => post._id === postId)
   );
 
-  const user = useSelector((state) =>
-    state.users.users.find((user) => user._id === post.userId)
+  const author = useSelector((state) =>
+    state.users.users.find((author) => author._id === post.userId)
   );
 
   let date = new Date(post?.createdAt);
@@ -21,24 +21,26 @@ function PostPage() {
     day: "numeric",
   };
 
-  console.log(post);
   return (
     <div className="pageContainer">
       <div className="mb-10">
         <h1 className="text-[64px] font-semibold">{post.title}</h1>
 
         <div className="flex items-center">
-          <div className="flex items-center max-w-[204px] mr-5">
+          <Link
+            to={`/profile/${author._id}`}
+            className="flex items-center max-w-[204px] mr-5"
+          >
             <img
               src={
-                user?.profilePicture ||
+                author?.profilePicture ||
                 "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
               }
-              alt={user?.name}
+              alt={author?.name}
               className="w-[20px] h-[20px] mr-[10px] object-cover "
             />
-            <p>{user?.name}</p>
-          </div>
+            <p>{author?.name}</p>
+          </Link>
 
           <p>{date.toLocaleString(undefined, options)}</p>
         </div>
