@@ -15,6 +15,9 @@
   .profile {
     @apply bg-white;
   }
+  .post {
+    @apply bg-white;
+  }
   .creators {
     @apply bg-[#F24D2E];
   }

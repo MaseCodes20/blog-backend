@@ -11,6 +11,7 @@ import OurStory from "./pages/OurStory";
 import PostModal from "./components/modals/PostModal";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PostPage from "./pages/PostPage";
 
 function App() {
   return (
@@ -24,6 +25,8 @@ function App() {
           <Route path="/about" element={<OurStory />} />
 
           <Route path="/creators" element={<Creators />} />
+
+          <Route path="/post/:id" element={<PostPage />} />
 
           <Route
             path="/blog-terms-of-service"

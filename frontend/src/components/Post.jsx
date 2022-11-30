@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Post({ post, userId }) {
   const author = useSelector((state) =>
@@ -14,7 +15,7 @@ function Post({ post, userId }) {
   };
 
   return (
-    <div key={post.id} className="flex items-center shadow-md">
+    <Link to={`/post/${post._id}`} className="flex items-center shadow-md">
       {post.image ? (
         <img
           src={post.image}
@@ -46,7 +47,7 @@ function Post({ post, userId }) {
 
         <p>{date.toLocaleString(undefined, options)}</p>
       </div>
-    </div>
+    </Link>
   );
 }
 
