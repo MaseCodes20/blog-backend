@@ -1,17 +1,18 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import PostMenu from "../components/postPage/PostMenu";
 
 function PostPage() {
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
 
   const post = useSelector((state) =>
-    state.posts.posts.find((post) => post._id === postId)
+    state.posts.posts.find((post) => post?._id === postId)
   );
 
   const author = useSelector((state) =>
-    state.users.users.find((author) => author._id === post.userId)
+    state.users.users.find((author) => author?._id === post?.userId)
   );
 
   let date = new Date(post?.createdAt);
@@ -24,11 +25,14 @@ function PostPage() {
   return (
     <div className="pageContainer">
       <div className="mb-10">
-        <h1 className="text-[64px] font-semibold">{post.title}</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="text-[64px] font-semibold">{post?.title}</h1>
+          <PostMenu author={author} />
+        </div>
 
         <div className="flex items-center">
           <Link
-            to={`/profile/${author._id}`}
+            to={`/profile/${author?._id}`}
             className="flex items-center max-w-[204px] mr-5"
           >
             <img
@@ -47,11 +51,11 @@ function PostPage() {
       </div>
 
       <div className="mb-10">
-        <img src={post.image} alt={post.title} className="max-h-[304px]" />
+        <img src={post?.image} alt={post?.title} className="max-h-[304px]" />
       </div>
 
       <div className="mb-10">
-        <p>{post.content}</p>
+        <p>{post?.content}</p>
       </div>
 
       <div className="mb-10 border-[1px] border-black p-5 ">

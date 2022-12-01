@@ -11,7 +11,7 @@ function AuthorProfilePage() {
   const { user } = useSelector((state) => state.auth);
 
   const author = useSelector((state) =>
-    state.users.users.find((author) => author._id === userId)
+    state.users.users.find((author) => author?._id === userId)
   );
 
   if (user._id === author?._id) {
