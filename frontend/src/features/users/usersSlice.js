@@ -121,7 +121,7 @@ export const usersSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.users = state.users.filter(
-          (item) => item._id !== action.payload.id
+          (item) => item._id !== action.payload._id
         );
       })
       .addCase(deleteUser.rejected, (state, action) => {
@@ -136,7 +136,7 @@ export const usersSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.users[
-          state.users.findIndex((item) => item._id === action.payload.id)
+          state.users.findIndex((item) => item._id === action.payload._id)
         ] = action.payload;
       })
       .addCase(updateUser.rejected, (state, action) => {

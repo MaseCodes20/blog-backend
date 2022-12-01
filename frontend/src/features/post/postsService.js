@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "api/v1/posts";
+const API_URL = "/api/v1/posts";
 
 // Get all Posts in Database
 const getPosts = async () => {

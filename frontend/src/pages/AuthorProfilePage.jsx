@@ -14,7 +14,7 @@ function AuthorProfilePage() {
     state.users.users.find((author) => author?._id === userId)
   );
 
-  if (user._id === author?._id) {
+  if (user?._id === author?._id) {
     return <Navigate to="/profile" />;
   }
 

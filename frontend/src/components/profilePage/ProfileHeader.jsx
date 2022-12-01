@@ -28,7 +28,7 @@ function ProfileHeader({ author }) {
         </div>
 
         <div>
-          {user._id !== author?._id && (
+          {user?._id !== author?._id && (
             <button className="w-[90px] h-[36px] bg-black text-white rounded-[76px] flex items-center justify-center">
               Follow
             </button>

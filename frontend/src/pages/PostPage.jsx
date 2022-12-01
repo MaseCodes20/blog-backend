@@ -27,7 +27,7 @@ function PostPage() {
       <div className="mb-10">
         <div className="flex justify-between items-center">
           <h1 className="text-[64px] font-semibold">{post?.title}</h1>
-          <PostMenu author={author} />
+          <PostMenu postId={post?._id} author={author} />
         </div>
 
         <div className="flex items-center">

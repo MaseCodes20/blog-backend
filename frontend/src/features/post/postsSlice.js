@@ -4,6 +4,7 @@ import postsService from "./postsService";
 const initialState = {
   posts: [],
   newPost: null,
+  deletedPost: null,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -82,6 +83,7 @@ export const postsSlice = createSlice({
       state.isError = false;
       state.isSuccess = false;
       state.newPost = null;
+      state.deletedPost = null;
       state.message = "";
     },
   },
@@ -120,8 +122,9 @@ export const postsSlice = createSlice({
       .addCase(deletePost.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
+        state.deletedPost = action.payload;
         state.posts = state.posts.filter(
-          (item) => item._id !== action.payload.id
+          (item) => item._id !== action.payload._id
         );
       })
       .addCase(deletePost.rejected, (state, action) => {
@@ -136,7 +139,7 @@ export const postsSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.posts[
-          state.posts.findIndex((item) => item._id === action.payload.id)
+          state.posts.findIndex((item) => item._id === action.payload._id)
         ] = action.payload;
       })
       .addCase(updatePost.rejected, (state, action) => {
