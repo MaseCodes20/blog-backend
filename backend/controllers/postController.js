@@ -68,6 +68,11 @@ const updatePost = asyncHandler(async (req, res) => {
     throw new Error("Post does not exist");
   }
 
+  if (post.userId !== req.user?.id) {
+    res.status(400);
+    throw new Error(`Not Authorized to update this post!`);
+  }
+
   try {
     const updatedPost = await Post.findByIdAndUpdate(
       req.params.postId,
@@ -94,6 +99,12 @@ const deletePost = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Post does not exist");
   }
+
+  if (post.userId !== req.user?.id) {
+    res.status(400);
+    throw new Error(`Not Authorized to delete this post!`);
+  }
+
   try {
     await post.remove();
 

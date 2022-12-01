@@ -3,6 +3,7 @@ const router = express.Router();
 
 const {
   verifyTokenAndAuthorization,
+  verifyToken,
 } = require("../middlewares/authMiddleware");
 
 const {
@@ -19,7 +20,7 @@ router
   .route("/:postId")
   .get(getPost)
   .put(verifyTokenAndAuthorization, updatePost)
-  .delete(verifyTokenAndAuthorization, deletePost);
+  .delete(verifyToken, deletePost);
 router.route("/find/:userID").get(getUserPosts);
 
 module.exports = router;
