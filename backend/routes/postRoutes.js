@@ -19,7 +19,7 @@ router.route("/").get(getAllPosts).get(getPost).post(setPost);
 router
   .route("/:postId")
   .get(getPost)
-  .put(verifyTokenAndAuthorization, updatePost)
+  .put(verifyToken, updatePost)
   .delete(verifyToken, deletePost);
 router.route("/find/:userID").get(getUserPosts);
 

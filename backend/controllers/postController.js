@@ -21,7 +21,7 @@ const getAllPosts = asyncHandler(async (req, res) => {
 // @access Public
 const getPost = asyncHandler(async (req, res) => {
   try {
-    const post = Post.find({ _id: req.params.postId });
+    const post = await Post.find({ _id: req.params.postId });
 
     res.status(200).json(post);
   } catch (error) {
