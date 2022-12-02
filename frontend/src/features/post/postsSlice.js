@@ -3,6 +3,7 @@ import postsService from "./postsService";
 
 const initialState = {
   posts: [],
+  post: null,
   newPost: null,
   deletedPost: null,
   isError: false,
@@ -11,10 +12,24 @@ const initialState = {
   message: "",
 };
 
-// Get posts
+// Get all posts
 export const allPosts = createAsyncThunk("posts", async (_, thunkAPI) => {
   try {
     return await postsService.getPosts();
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+
+    return thunkAPI.rejectWithValue(message);
+  }
+});
+
+// Get post
+export const findPost = createAsyncThunk("Posts/find", async (id, thunkAPI) => {
+  try {
+    return await postsService.getPost(id);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
@@ -98,6 +113,19 @@ export const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(allPosts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(findPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(findPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.post = action.payload;
+      })
+      .addCase(findPost.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

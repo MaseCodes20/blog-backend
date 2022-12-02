@@ -13,8 +13,16 @@ import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PostPage from "./pages/PostPage";
 import AuthorProfilePage from "./pages/AuthorProfilePage";
+import { allUsers } from "./features/users/usersSlice";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(allUsers());
+  }, []);
   return (
     <>
       <Router>

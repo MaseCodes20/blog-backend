@@ -37,9 +37,9 @@ function PostMenu({ postId, author }) {
       toast.error(message);
     }
 
-    if (isSuccess && deletedPost?._id === postId) {
-      navigate("/profile");
-    }
+    // if (isSuccess && deletedPost?._id === postId) {
+    //   navigate("/profile");
+    // }
 
     dispatch(reset());
   }, [isSuccess, isError, message, dispatch, navigate]);

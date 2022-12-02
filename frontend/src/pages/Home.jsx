@@ -3,17 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import AdsSection from "../components/homePage/AdsSection";
 import PostSection from "../components/homePage/PostSection";
-import { allUsers } from "../features/users/usersSlice";
 
 function Home() {
-  const dispatch = useDispatch();
-
-  const { users } = useSelector((state) => state.users);
-
-  useEffect(() => {
-    dispatch(allUsers());
-  }, []);
-
   return (
     <div className="pageContainer md:flex">
       {/* SideBar menu */}

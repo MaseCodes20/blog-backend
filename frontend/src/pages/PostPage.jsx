@@ -1,15 +1,21 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import PostMenu from "../components/postPage/PostMenu";
+import { findPost } from "../features/post/postsSlice";
 
 function PostPage() {
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
 
-  const post = useSelector((state) =>
+  const postFound = useSelector((state) =>
     state.posts.posts.find((post) => post?._id === postId)
   );
+  const { post: pagePost } = useSelector((state) => state.posts);
+
+  let post = postFound || (pagePost && pagePost[0]);
+
+  const dispatch = useDispatch();
 
   const author = useSelector((state) =>
     state.users.users.find((author) => author?._id === post?.userId)
@@ -21,6 +27,12 @@ function PostPage() {
     month: "short",
     day: "numeric",
   };
+
+  useEffect(() => {
+    if (!postFound) {
+      dispatch(findPost(postId));
+    }
+  }, [postFound, postId]);
 
   return (
     <div className="pageContainer">
@@ -60,7 +72,7 @@ function PostPage() {
 
       <div className="mb-10 border-[1px] border-black p-5 ">
         <div className="mb-5 min-h-[200px] bg-gray-100">
-          {post?.comments.map((comment) => {
+          {post?.comments?.map((comment) => {
             return <div>{comment?.comment}</div>;
           })}
         </div>

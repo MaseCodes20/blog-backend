@@ -11,6 +11,13 @@ const getPosts = async () => {
   );
 };
 
+// Get Post
+const getPost = async (id) => {
+  const response = await axios.get(`${API_URL}/${id}`);
+
+  return response.data;
+};
+
 // Add Post to Database
 const setPost = async (data) => {
   const { postData, token } = data;
@@ -42,6 +49,7 @@ const removePost = async (data) => {
 
 const postsService = {
   getPosts,
+  getPost,
   setPost,
   removePost,
   postUpdate,
