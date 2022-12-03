@@ -12,15 +12,44 @@ import { toast } from "react-toastify";
 import DeletePostButton from "./DeletePostButton";
 import { useNavigate } from "react-router-dom";
 import { deletePost, reset } from "../../features/post/postsSlice";
+import { updateUser } from "../../features/users/usersSlice";
 
 function PostMenu({ postId, author }) {
   const { user } = useSelector((state) => state.auth);
   const { isSuccess, isError, message, deletedPost } = useSelector(
     (state) => state.posts
   );
+  const userData = useSelector((state) =>
+    state.users.users.find((currentUser) => currentUser._id === user._id)
+  );
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const bookmarkPost = () => {
+    let userBookmarks = userData.boomarks ? userData.boomaks : [];
+    let data = {
+      userData: {
+        bookmarks: [],
+      },
+      token: user.token,
+      userId: user._id,
+    };
+    if (
+      userData?.bookmarks?.find((bookmark) => bookmark?.postId === postId)
+        ?.postId === postId
+    ) {
+      const updatedBookmarks = userData?.bookmarks?.filter(
+        (bookmark) => bookmark?.postId !== postId
+      );
+
+      data.userData.bookmarks = updatedBookmarks;
+      dispatch(updateUser(data));
+    } else {
+      data.userData.bookmarks = [...userBookmarks, { postId }];
+      dispatch(updateUser(data));
+    }
+  };
 
   const removePost = () => {
     const data = {
@@ -37,9 +66,9 @@ function PostMenu({ postId, author }) {
       toast.error(message);
     }
 
-    // if (isSuccess && deletedPost?._id === postId) {
-    //   navigate("/profile");
-    // }
+    if (isSuccess && deletedPost?._id === postId) {
+      navigate("/profile");
+    }
 
     dispatch(reset());
   }, [isSuccess, isError, message, dispatch, navigate]);
@@ -109,11 +138,19 @@ function PostMenu({ postId, author }) {
             <Menu.Item>
               {({ active }) => (
                 <button
+                  onClick={bookmarkPost}
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}
                 >
-                  <BookmarkIcon className="h-5 mr-5" /> Bookmark
+                  <BookmarkIcon
+                    className={`${
+                      userData?.bookmarks?.find(
+                        (bookmark) => bookmark?.postId === postId
+                      )?.postId === postId && "fill-black"
+                    } h-5 mr-5`}
+                  />{" "}
+                  Bookmark
                 </button>
               )}
             </Menu.Item>

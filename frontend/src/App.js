@@ -16,12 +16,14 @@ import AuthorProfilePage from "./pages/AuthorProfilePage";
 import { allUsers } from "./features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { allPosts } from "./features/post/postsSlice";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(allUsers());
+    dispatch(allPosts());
   }, []);
   return (
     <>
