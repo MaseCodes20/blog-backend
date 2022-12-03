@@ -13,8 +13,9 @@ import DeletePostButton from "./DeletePostButton";
 import { useNavigate } from "react-router-dom";
 import { deletePost, reset } from "../../features/post/postsSlice";
 import { updateUser } from "../../features/users/usersSlice";
+import { editPost } from "../../features/modals/postModalSlice";
 
-function PostMenu({ postId, author }) {
+function PostMenu({ post, author }) {
   const { user } = useSelector((state) => state.auth);
   const { isSuccess, isError, message, deletedPost } = useSelector(
     (state) => state.posts
@@ -25,6 +26,8 @@ function PostMenu({ postId, author }) {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const postId = post?._id;
 
   const bookmarkPost = () => {
     const bookmarks = userData?.bookmarks.map((bookmark) => bookmark);
@@ -109,11 +112,12 @@ function PostMenu({ postId, author }) {
                 <Menu.Item>
                   {({ active }) => (
                     <button
+                      onClick={() => dispatch(editPost(post))}
                       className={`${
                         active ? "bg-violet-500 text-white" : "text-gray-900"
                       } group flex w-full items-center px-2 py-2 text-sm`}
                     >
-                      <PencilAltIcon className="h-5 mr-5" /> Update
+                      <PencilAltIcon className="h-5 mr-5" /> Edit
                     </button>
                   )}
                 </Menu.Item>

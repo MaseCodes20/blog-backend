@@ -5,21 +5,18 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, reset } from "../../features/post/postsSlice";
+import { addPost, reset, updatePost } from "../../features/post/postsSlice";
 import { toast } from "react-toastify";
 import { closePostModal } from "../../features/modals/postModalSlice";
 import { useNavigate } from "react-router-dom";
 
-function PostModalForm() {
+function EditPostModalForm({ post }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [postImage, setPostImage] = useState(post?.image);
   const [displayedImage, setDisplayedImage] = useState("");
-  const [inputs, setInputs] = useState({
-    title: "",
-    content: "",
-  });
-  const [categories, setCategpries] = useState([]);
-
-  const { title, content } = inputs;
+  const [postTitle, setPostTitle] = useState(post?.title);
+  const [postContent, setPostContent] = useState(post?.content);
+  const [categories, setCategpries] = useState(post?.categories);
 
   const { user } = useSelector((state) => state.auth);
   const { isError, isSuccess, newPost, message } = useSelector(
@@ -30,13 +27,22 @@ function PostModalForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
-
   const handleCategories = (e) => {
     setCategpries(e.target.value.split(","));
   };
+
+  const allAreEqual = (array) => {
+    const result = array.map((element, index) => {
+      if (element.includes(post?.categories[index])) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    return result.every((item) => item === true);
+  };
+
+  let isCategoriesEqual = allAreEqual(categories);
 
   const getImageUrl = async () => {
     const formData = new FormData();
@@ -76,24 +82,29 @@ function PostModalForm() {
     }
 
     let data = {
-      postData: {
-        userId: user._id,
-        title: title,
-        content: content,
-      },
-      token: user.token,
+      postData: {},
+      postId: post?._id,
+      token: user?.token,
     };
 
-    if (categories.length >= 1) {
+    if (postTitle !== post?.title) {
+      data.postData.title = postTitle;
+    }
+
+    if (postContent !== post?.content) {
+      data.postData.content = postContent;
+    }
+
+    if (!isCategoriesEqual) {
       data.postData.categories = categories;
     }
 
     if (selectedImage) {
       const imageURL = await getImageUrl();
       data.postData.image = imageURL;
-      dispatch(addPost(data));
+      dispatch(updatePost(data));
     } else {
-      dispatch(addPost(data));
+      dispatch(updatePost(data));
     }
   };
 
@@ -102,8 +113,7 @@ function PostModalForm() {
       toast.error(message);
     }
 
-    if (isSuccess && newPost) {
-      navigate("/profile");
+    if (isSuccess) {
       dispatch(closePostModal());
     }
 
@@ -120,17 +130,21 @@ function PostModalForm() {
           type="text"
           name="title"
           id="title"
-          onChange={handleChange}
+          onChange={(e) => setPostTitle(e.target.value)}
+          value={postTitle}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>
 
-      {displayedImage ? (
+      {displayedImage || postImage ? (
         <img
-          src={displayedImage}
+          src={displayedImage || postImage}
           className="w-full h-[150px] object-contain mb-2 cursor-pointer"
-          alt=""
-          onClick={() => setDisplayedImage(null)}
+          alt={post?.title}
+          onClick={() => {
+            setDisplayedImage(null);
+            setPostImage(null);
+          }}
         />
       ) : (
         <div
@@ -157,7 +171,8 @@ function PostModalForm() {
         <textarea
           name="content"
           id="content"
-          onChange={handleChange}
+          onChange={(e) => setPostContent(e.target.value)}
+          value={postContent}
           className="border p-2 border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black h-[200px] box-border resize-none"
         />
       </div>
@@ -172,6 +187,7 @@ function PostModalForm() {
           name="categories"
           id="categories"
           onChange={handleCategories}
+          value={categories}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>
@@ -179,7 +195,7 @@ function PostModalForm() {
       <div className="relative">
         <input
           type="submit"
-          value="Post"
+          value="Update"
           className="absolute right-0 pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium cursor-pointer"
         />
       </div>
@@ -187,4 +203,4 @@ function PostModalForm() {
   );
 }
 
-export default PostModalForm;
+export default EditPostModalForm;
