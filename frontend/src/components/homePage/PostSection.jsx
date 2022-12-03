@@ -15,7 +15,7 @@ function PostSection() {
   return (
     <section className="p-5 flex-[6] grid grid-cols-1 gap-5">
       {posts?.map((post) => {
-        return <Post key={post._id} post={post} userId={post.userId} />;
+        return <Post key={post._id} postId={post._id} userId={post.userId} />;
       })}
     </section>
   );
