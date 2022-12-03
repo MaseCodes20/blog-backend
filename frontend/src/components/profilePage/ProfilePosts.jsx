@@ -9,7 +9,7 @@ function ProfilePosts({ author }) {
   return (
     <div className="grid grid-cols-2 justify-items-center gap-5 my-10">
       {posts.map((post) => {
-        return <Post key={post._id} post={post} userId={post.userId} />;
+        return <Post key={post._id} postId={post._id} userId={post.userId} />;
       })}
     </div>
   );

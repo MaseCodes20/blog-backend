@@ -68,13 +68,14 @@ function UserMenu() {
           <div className="px-1 py-1">
             <Menu.Item>
               {({ active }) => (
-                <button
+                <Link
+                  to="/bookmarks"
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}
                 >
                   <BookmarkIcon className="h-5 mr-5" /> Bookmarks
-                </button>
+                </Link>
               )}
             </Menu.Item>
           </div>

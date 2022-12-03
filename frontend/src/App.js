@@ -17,6 +17,7 @@ import { allUsers } from "./features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
+import BookmarksPage from "./pages/BookmarksPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <ProfilePage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/bookmarks"
+            element={
+              <ProtectedRoute>
+                <BookmarksPage />
               </ProtectedRoute>
             }
           />

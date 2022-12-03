@@ -2,9 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-function Post({ post, userId }) {
+function Post({ postId, userId }) {
   const author = useSelector((state) =>
     state.users.users.find((user) => user._id === userId)
+  );
+
+  const post = useSelector((state) =>
+    state.posts.posts.find((post) => post._id === postId)
   );
 
   let date = new Date(post?.createdAt);
@@ -15,16 +19,16 @@ function Post({ post, userId }) {
   };
 
   return (
-    <Link to={`/post/${post._id}`} className="flex items-center shadow-md">
-      {post.image ? (
+    <Link to={`/post/${post?._id}`} className="flex items-center shadow-md">
+      {post?.image ? (
         <img
-          src={post.image}
-          alt={post.title}
+          src={post?.image}
+          alt={post?.title}
           className="w-[200px] h-[134px] object-cover mr-5"
         />
       ) : (
         <div className="w-[200px] h-[134px] bg-gray-200 flex items-center justify-center mr-5">
-          <p className="uppercase">{post.title}</p>
+          <p className="uppercase">{post?.title}</p>
         </div>
       )}
 
@@ -41,10 +45,10 @@ function Post({ post, userId }) {
           <h3>{author?.name}</h3>
         </div>
 
-        <h1 className="text-[28px] font-semibold">{post.title}</h1>
+        <h1 className="text-[28px] font-semibold">{post?.title}</h1>
 
         <p className="w-[160px] md:w-[240px] text-[20px] truncate">
-          {post.content}
+          {post?.content}
         </p>
 
         <p>{date.toLocaleString(undefined, options)}</p>
