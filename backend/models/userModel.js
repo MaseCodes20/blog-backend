@@ -19,6 +19,13 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+    bookmarks: [
+      {
+        postId: {
+          type: String,
+        },
+      },
+    ],
     isAdmin: {
       type: Boolean,
       default: false,
