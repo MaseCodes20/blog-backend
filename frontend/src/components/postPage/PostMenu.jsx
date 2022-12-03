@@ -27,7 +27,8 @@ function PostMenu({ postId, author }) {
   const navigate = useNavigate();
 
   const bookmarkPost = () => {
-    let userBookmarks = userData.boomarks ? userData.boomaks : [];
+    const bookmarks = userData?.bookmarks.map((bookmark) => bookmark);
+
     let data = {
       userData: {
         bookmarks: [],
@@ -35,18 +36,19 @@ function PostMenu({ postId, author }) {
       token: user.token,
       userId: user._id,
     };
+
     if (
       userData?.bookmarks?.find((bookmark) => bookmark?.postId === postId)
         ?.postId === postId
     ) {
-      const updatedBookmarks = userData?.bookmarks?.filter(
+      const updatedBookmarks = bookmarks?.filter(
         (bookmark) => bookmark?.postId !== postId
       );
 
       data.userData.bookmarks = updatedBookmarks;
       dispatch(updateUser(data));
     } else {
-      data.userData.bookmarks = [...userBookmarks, { postId }];
+      data.userData.bookmarks = [...bookmarks, { postId }];
       dispatch(updateUser(data));
     }
   };
@@ -121,7 +123,10 @@ function PostMenu({ postId, author }) {
                   {/* <DeletePostButton postId={postId} /> */}
                   {({ active }) => (
                     <button
-                      onClick={removePost}
+                      onClick={() => {
+                        removePost();
+                        bookmarkPost();
+                      }}
                       className={`${
                         active ? "bg-violet-500 text-white" : "text-gray-900"
                       } group flex w-full items-center px-2 py-2 text-sm`}
