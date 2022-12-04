@@ -18,6 +18,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
 import BookmarksPage from "./pages/BookmarksPage";
+import ShareModal from "./components/modals/ShareModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +69,7 @@ function App() {
         </Routes>
 
         <PostModal />
+        <ShareModal />
         <ConnectModal />
       </Router>
 

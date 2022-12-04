@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { deletePost, reset } from "../../features/post/postsSlice";
 import { updateUser } from "../../features/users/usersSlice";
 import { editPost } from "../../features/modals/postModalSlice";
+import { openShareModal } from "../../features/modals/ShareModalSlice";
 
 function PostMenu({ post, author }) {
   const { user } = useSelector((state) => state.auth);
@@ -97,6 +98,7 @@ function PostMenu({ post, author }) {
             <Menu.Item>
               {({ active }) => (
                 <button
+                  onClick={() => dispatch(openShareModal())}
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}
