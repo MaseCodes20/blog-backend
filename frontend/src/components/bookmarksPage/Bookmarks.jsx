@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Post from "../Post";
 
-function Bookmarks({ bookmarkId }) {
+function Bookmarks() {
   const { user } = useSelector((state) => state.auth);
   const userBookMarks = useSelector(
     (state) =>
@@ -12,7 +12,7 @@ function Bookmarks({ bookmarkId }) {
 
   return (
     <>
-      {userBookMarks.length >= 1 && (
+      {userBookMarks?.length >= 1 && (
         <>
           {userBookMarks?.map((bookmarks) => {
             return (
