@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import ConnectModal from "./components/modals/ConnectModal";
 import Home from "./pages/Home";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,7 +7,7 @@ import BlogTermsOfService from "./pages/BlogTermsOfService";
 import BlogPrivacyPolicy from "./pages/BlogPrivacyPolicy";
 import Creators from "./pages/Creators";
 import OurStory from "./pages/OurStory";
-import PostModal from "./components/modals/PostModal";
+import PostModal from "./components/modals/postModal/PostModal";
 import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PostPage from "./pages/PostPage";
@@ -18,7 +17,9 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
 import BookmarksPage from "./pages/BookmarksPage";
-import ShareModal from "./components/modals/ShareModal";
+import ConnectModal from "./components/modals/connectModal/ConnectModal";
+import ShareModal from "./components/modals/shareModal/ShareModal";
+import EditProfileModal from "./components/modals/editProfileModal/EditProfileModal";
 
 function App() {
   const dispatch = useDispatch();
@@ -70,6 +71,7 @@ function App() {
 
         <PostModal />
         <ShareModal />
+        <EditProfileModal />
         <ConnectModal />
       </Router>
 

@@ -27,8 +27,8 @@ import {
   WhatsappIcon,
 } from "react-share";
 import { toast } from "react-toastify";
-import { closeShareModal } from "../../features/modals/ShareModalSlice";
-import CloseModalButton from "./CloseModalButton";
+import { closeShareModal } from "../../../features/modals/ShareModalSlice";
+import CloseModalButton from "../CloseModalButton";
 
 function ShareModal() {
   const { isShareModalOpen } = useSelector((state) => state.shareModal);

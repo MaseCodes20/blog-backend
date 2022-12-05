@@ -5,18 +5,21 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addPost, reset, updatePost } from "../../features/post/postsSlice";
+import { addPost, reset } from "../../../features/post/postsSlice";
 import { toast } from "react-toastify";
-import { closePostModal } from "../../features/modals/postModalSlice";
+import { closePostModal } from "../../../features/modals/postModalSlice";
 import { useNavigate } from "react-router-dom";
 
-function EditPostModalForm({ post }) {
+function PostModalForm() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [postImage, setPostImage] = useState(post?.image);
   const [displayedImage, setDisplayedImage] = useState("");
-  const [postTitle, setPostTitle] = useState(post?.title);
-  const [postContent, setPostContent] = useState(post?.content);
-  const [categories, setCategpries] = useState(post?.categories);
+  const [inputs, setInputs] = useState({
+    title: "",
+    content: "",
+  });
+  const [categories, setCategpries] = useState([]);
+
+  const { title, content } = inputs;
 
   const { user } = useSelector((state) => state.auth);
   const { isError, isSuccess, newPost, message } = useSelector(
@@ -27,22 +30,13 @@ function EditPostModalForm({ post }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleChange = (e) => {
+    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
   const handleCategories = (e) => {
     setCategpries(e.target.value.split(","));
   };
-
-  const allAreEqual = (array) => {
-    const result = array.map((element, index) => {
-      if (element.includes(post?.categories[index])) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-    return result.every((item) => item === true);
-  };
-
-  let isCategoriesEqual = allAreEqual(categories);
 
   const getImageUrl = async () => {
     const formData = new FormData();
@@ -77,34 +71,25 @@ function EditPostModalForm({ post }) {
   const submitForm = async (e) => {
     e.preventDefault();
 
-    if (selectedImage) {
-      getImageUrl();
-    }
-
     let data = {
-      postData: {},
-      postId: post?._id,
-      token: user?.token,
+      postData: {
+        userId: user._id,
+        title: title,
+        content: content,
+      },
+      token: user.token,
     };
 
-    if (postTitle !== post?.title) {
-      data.postData.title = postTitle;
-    }
-
-    if (postContent !== post?.content) {
-      data.postData.content = postContent;
-    }
-
-    if (!isCategoriesEqual) {
+    if (categories.length >= 1) {
       data.postData.categories = categories;
     }
 
     if (selectedImage) {
       const imageURL = await getImageUrl();
       data.postData.image = imageURL;
-      dispatch(updatePost(data));
+      dispatch(addPost(data));
     } else {
-      dispatch(updatePost(data));
+      dispatch(addPost(data));
     }
   };
 
@@ -113,7 +98,8 @@ function EditPostModalForm({ post }) {
       toast.error(message);
     }
 
-    if (isSuccess) {
+    if (isSuccess && newPost) {
+      navigate("/profile");
       dispatch(closePostModal());
     }
 
@@ -130,21 +116,17 @@ function EditPostModalForm({ post }) {
           type="text"
           name="title"
           id="title"
-          onChange={(e) => setPostTitle(e.target.value)}
-          value={postTitle}
+          onChange={handleChange}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>
 
-      {displayedImage || postImage ? (
+      {displayedImage ? (
         <img
-          src={displayedImage || postImage}
+          src={displayedImage}
           className="w-full h-[150px] object-contain mb-2 cursor-pointer"
-          alt={post?.title}
-          onClick={() => {
-            setDisplayedImage(null);
-            setPostImage(null);
-          }}
+          alt=""
+          onClick={() => setDisplayedImage(null)}
         />
       ) : (
         <div
@@ -171,8 +153,7 @@ function EditPostModalForm({ post }) {
         <textarea
           name="content"
           id="content"
-          onChange={(e) => setPostContent(e.target.value)}
-          value={postContent}
+          onChange={handleChange}
           className="border p-2 border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black h-[200px] box-border resize-none"
         />
       </div>
@@ -187,7 +168,6 @@ function EditPostModalForm({ post }) {
           name="categories"
           id="categories"
           onChange={handleCategories}
-          value={categories}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>
@@ -195,7 +175,7 @@ function EditPostModalForm({ post }) {
       <div className="relative">
         <input
           type="submit"
-          value="Update"
+          value="Post"
           className="absolute right-0 pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium cursor-pointer"
         />
       </div>
@@ -203,4 +183,4 @@ function EditPostModalForm({ post }) {
   );
 }
 
-export default EditPostModalForm;
+export default PostModalForm;

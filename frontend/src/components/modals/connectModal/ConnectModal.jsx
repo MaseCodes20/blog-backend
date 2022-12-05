@@ -1,12 +1,12 @@
 import React, { useRef } from "react";
-import SignIn from "../user/SignIn";
-import SignUp from "../user/SignUp";
+import SignIn from "../../user/SignIn";
+import SignUp from "../../user/SignUp";
 import { useDispatch, useSelector } from "react-redux";
-import { close } from "../../features/modals/connectModalSlice";
-import SignInForm from "../user/SignInForm";
-import SignUpForm from "../user/SignUpForm";
-import { resetFormSelector } from "../../features/user/formSelectorSlice";
-import CloseModalButton from "./CloseModalButton";
+import { close } from "../../../features/modals/connectModalSlice";
+import SignInForm from "../../user/SignInForm";
+import SignUpForm from "../../user/SignUpForm";
+import { resetFormSelector } from "../../../features/user/formSelectorSlice";
+import CloseModalButton from "../CloseModalButton";
 
 function ConnectModal() {
   const { isOpen } = useSelector((state) => state.connectModal);

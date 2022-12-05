@@ -47,7 +47,9 @@ function Post({ postId }) {
               <h3>{author?.name}</h3>
             </div>
 
-            <h1 className="text-[28px] font-semibold">{post?.title}</h1>
+            <h1 className="text-[28px] w-[240px] font-semibold truncate">
+              {post?.title}
+            </h1>
 
             <p className="w-[160px] md:w-[240px] text-[20px] truncate">
               {post?.content}

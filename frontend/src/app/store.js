@@ -7,6 +7,7 @@ import hasAccountReducer from "../features/user/hasAccountSlice";
 import formSelectorReducer from "../features/user/formSelectorSlice";
 import postModalReducer from "../features/modals/postModalSlice";
 import shareModalReducer from "../features/modals/ShareModalSlice";
+import editProfileModalReducer from "../features/modals/editProfileModalSlice";
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     connectModal: connectModalReducer,
     postModal: postModalReducer,
     shareModal: shareModalReducer,
+    editProfileModal: editProfileModalReducer,
     hasAccount: hasAccountReducer,
     formSelector: formSelectorReducer,
   },

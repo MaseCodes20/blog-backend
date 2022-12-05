@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { closePostModal } from "../../features/modals/postModalSlice";
-import CloseModalButton from "./CloseModalButton";
+import { closePostModal } from "../../../features/modals/postModalSlice";
+import CloseModalButton from "../CloseModalButton";
 import EditPostModalForm from "./EditPostModalForm";
 import PostModalForm from "./PostModalForm";
 
