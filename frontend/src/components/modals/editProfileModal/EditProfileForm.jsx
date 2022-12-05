@@ -20,11 +20,16 @@ function EditProfileFrom({ user }) {
 
   const { user: userAuth } = useSelector((state) => state.auth);
   const { isError, isSuccess, message } = useSelector((state) => state.users);
+  const userName = useSelector((state) =>
+    state.users.users.find((currentUser) => currentUser.username === username)
+  );
 
   const profilePicPickerRef = useRef();
   const bannerPickerRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  let usernameExists = !!userName;
 
   const getImageUrl = async () => {
     const formData = new FormData();
@@ -99,7 +104,7 @@ function EditProfileFrom({ user }) {
       data.userData.name = userFullName;
     }
 
-    if (username !== (user?.username ?? "")) {
+    if (username !== (user?.username ?? "") && !usernameExists) {
       data.userData.username = username;
     }
 
@@ -117,6 +122,8 @@ function EditProfileFrom({ user }) {
       data.userData.banner = imageURL;
       dispatch(updateUser(data));
     }
+
+    console.log(data);
     dispatch(updateUser(data));
   };
 
@@ -125,16 +132,16 @@ function EditProfileFrom({ user }) {
       toast.error(message);
     }
 
-    // if (isSuccess) {
-    //   dispatch(closeEditProfileModal());
-    // }
+    if (isSuccess) {
+      dispatch(closeEditProfileModal());
+    }
 
     dispatch(reset());
   }, [message, isError, isSuccess, dispatch, navigate]);
 
   return (
     <form className="my-5 w-full h-full" onSubmit={submitForm}>
-      <div className="flex items-center justify-between">
+      <div className="flex justify-between">
         <div className="flex flex-col mb-2">
           <label htmlFor="name" className="text-left text-[13px]">
             Full Name
@@ -159,6 +166,14 @@ function EditProfileFrom({ user }) {
             value={username}
             className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
           />
+
+          <div className="h-[20px]">
+            {usernameExists && username !== user?.username && (
+              <p className="text-red-600 text-left text-[13px]">
+                Username already exists!
+              </p>
+            )}
+          </div>
         </div>
 
         <div>

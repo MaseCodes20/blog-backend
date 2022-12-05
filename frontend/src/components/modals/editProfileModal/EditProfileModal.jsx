@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEditProfileModal } from "../../../features/modals/editProfileModalSlice";
 import CloseModalButton from "../CloseModalButton";
-import EditProfileFrom from "./EditProfileFrom";
+import EditProfileFrom from "./EditProfileForm";
 
 function EditProfileModal() {
   const { user } = useSelector((state) => state.auth);
