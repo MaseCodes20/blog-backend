@@ -89,6 +89,38 @@ const updatePost = asyncHandler(async (req, res) => {
   }
 });
 
+// @desx Update Comments
+// @route Put /api/v1/Posts/:postId/comments
+// @access Public
+const updateComments = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.postId);
+
+  if (!post) {
+    res.status(404);
+    throw new Error("Post does not exist");
+  }
+
+  if (!req.body.comments) {
+    res.status(404);
+    throw new Error("Only comments that can be updated");
+  }
+
+  try {
+    const updatedPostComments = await Post.findByIdAndUpdate(
+      req.params.postId,
+      { comments: req.body.comments },
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedPostComments);
+  } catch (error) {
+    res.status(500);
+    throw new Error(error);
+  }
+});
+
 // @desx Delete Posts
 // @route Delete /api/v1/Posts/:postId
 // @access Private
@@ -122,4 +154,5 @@ module.exports = {
   setPost,
   updatePost,
   deletePost,
+  updateComments,
 };

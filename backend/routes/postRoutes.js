@@ -1,10 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const {
-  verifyTokenAndAuthorization,
-  verifyToken,
-} = require("../middlewares/authMiddleware");
+const { verifyToken } = require("../middlewares/authMiddleware");
 
 const {
   getAllPosts,
@@ -13,6 +10,7 @@ const {
   setPost,
   updatePost,
   deletePost,
+  updateComments,
 } = require("../controllers/postController");
 
 router.route("/").get(getAllPosts).get(getPost).post(setPost);
@@ -21,6 +19,7 @@ router
   .get(getPost)
   .put(verifyToken, updatePost)
   .delete(verifyToken, deletePost);
+router.route("/:postId/comments").put(verifyToken, updateComments);
 router.route("/find/:userID").get(getUserPosts);
 
 module.exports = router;
