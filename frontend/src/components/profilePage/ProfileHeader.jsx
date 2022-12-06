@@ -9,6 +9,17 @@ function ProfileHeader({ author }) {
     state.users.users.find((currentUser) => currentUser._id === author?._id)
   );
 
+  const followers = useSelector((state) =>
+    state.users.users.filter(
+      (user) =>
+        user?.following.find((follower) => follower.userId === userProfile?._id)
+          ?.userId === userProfile?._id
+    )
+  );
+
+  let followerTotal = followers.length;
+  const numberFormat = new Intl.NumberFormat("en-US");
+
   return (
     <>
       <div className="w-full h-[206px] flex items-center justify-center bg-gray-200">
@@ -28,7 +39,10 @@ function ProfileHeader({ author }) {
 
           <div>
             <h3 className="text-[24px] font-semibold">{userProfile?.name}</h3>
-            <p className="text-sm">1,000 followers</p>
+            <p className="text-sm">
+              {numberFormat.format(followerTotal)}{" "}
+              {followerTotal === 1 ? "Follower" : "Followers"}
+            </p>
           </div>
         </div>
 
