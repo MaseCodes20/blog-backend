@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import EditProfileButton from "./EditProfileButton";
+import FollowButton from "./FollowButton";
 
 function ProfileHeader({ author }) {
   const { user } = useSelector((state) => state.auth);
@@ -33,9 +34,7 @@ function ProfileHeader({ author }) {
 
         <div>
           {user?._id !== userProfile?._id ? (
-            <button className="w-[90px] h-[36px] bg-black text-white rounded-[76px] flex items-center justify-center">
-              Follow
-            </button>
+            <FollowButton otherUser={userProfile} />
           ) : (
             <EditProfileButton />
           )}
