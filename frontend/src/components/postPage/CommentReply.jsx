@@ -11,7 +11,7 @@ function CommentReply({ reply }) {
   );
 
   return (
-    <div>
+    <div className="mb-2 border-gray-200 border-b-[1px]">
       <Link to={`/profile/${userId}`} className="flex items-center mb-2">
         <img
           src={
@@ -24,7 +24,8 @@ function CommentReply({ reply }) {
 
         <h3 className="text-xs">{commentUser?.name}</h3>
       </Link>
-      <p>{userComment}</p>
+
+      <p className="mb-2">{userComment}</p>
 
       <p className="text-[10px] text-gray-600 mr-5 ">{format(createdAt)}</p>
     </div>
