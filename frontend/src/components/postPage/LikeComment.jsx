@@ -15,6 +15,10 @@ function LikeComment({ comment }) {
 
   const dispatch = useDispatch();
 
+  let userHasLiked = !!comment.likes.find(
+    (currentUser) => currentUser?.userId === user?._id
+  );
+
   const toggleLike = () => {
     let data = {
       postData: {},
@@ -22,10 +26,7 @@ function LikeComment({ comment }) {
       postId: post?._id,
     };
 
-    if (
-      comment.likes.find((currentUser) => currentUser?.userId === user?._id)
-        ?.userId === user?._id
-    ) {
+    if (userHasLiked) {
       let updatedCommentsLikes = post?.comments?.map((selectedComment) => {
         if (selectedComment?._id === comment?._id) {
           return {
@@ -59,7 +60,9 @@ function LikeComment({ comment }) {
   };
   return (
     <button onClick={toggleLike}>
-      <HeartIcon className="h-4 px-5" />
+      <HeartIcon
+        className={`h-4 px-5 ${userHasLiked && "fill-red-500 text-red-500"}`}
+      />
     </button>
   );
 }

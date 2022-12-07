@@ -5,7 +5,7 @@ function PostComments({ post }) {
   return (
     <div className="mb-5 min-h-[200px] bg-gray-100">
       {post?.comments?.map((comment) => {
-        return <Comment key={comment?._id} comment={comment} post={post} />;
+        return <Comment key={comment?._id} comment={comment} />;
       })}
     </div>
   );

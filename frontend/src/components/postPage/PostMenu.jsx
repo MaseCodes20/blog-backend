@@ -22,7 +22,7 @@ function PostMenu({ post, author }) {
     (state) => state.posts
   );
   const userData = useSelector((state) =>
-    state.users.users.find((currentUser) => currentUser._id === user._id)
+    state.users.users.find((currentUser) => currentUser._id === user?._id)
   );
 
   const dispatch = useDispatch();

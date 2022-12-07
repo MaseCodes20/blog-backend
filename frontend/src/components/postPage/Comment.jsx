@@ -2,9 +2,10 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
+import CommentOptions from "./CommentOptions";
 import LikeComment from "./LikeComment";
 
-function Comment({ comment, post }) {
+function Comment({ comment }) {
   const { userId, comment: userComment, createdAt } = comment;
 
   const commentUser = useSelector((state) =>
@@ -31,7 +32,11 @@ function Comment({ comment, post }) {
         <LikeComment comment={comment} />
       </div>
 
-      <p className="text-[10px] text-gray-600 mt-2">{format(createdAt)}</p>
+      <div className="flex items-center mt-2">
+        <p className="text-[10px] text-gray-600 mr-5 ">{format(createdAt)}</p>
+
+        <CommentOptions userId={userId} commentId={comment?._id} />
+      </div>
     </div>
   );
 }
