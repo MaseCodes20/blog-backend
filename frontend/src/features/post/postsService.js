@@ -38,6 +38,16 @@ const postUpdate = async (data) => {
   return response.data;
 };
 
+// Update Post Comments in Database
+const commentsUpdate = async (data) => {
+  const { postData, token, postId } = data;
+  const response = await axios.put(`${API_URL}/${postId}/comments`, postData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return response.data;
+};
+
 const removePost = async (data) => {
   const { postId, token } = data;
   const response = await axios.delete(`${API_URL}/${postId}`, {
@@ -53,6 +63,7 @@ const postsService = {
   setPost,
   removePost,
   postUpdate,
+  commentsUpdate,
 };
 
 export default postsService;

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
+import CommentInput from "../components/postPage/CommentInput";
+import PostComments from "../components/postPage/PostComments";
 import PostMenu from "../components/postPage/PostMenu";
 import { findPost } from "../features/post/postsSlice";
 
@@ -71,21 +73,9 @@ function PostPage() {
       </div>
 
       <div className="mb-10 border-[1px] border-black p-5 ">
-        <div className="mb-5 min-h-[200px] bg-gray-100">
-          {post?.comments?.map((comment) => {
-            return <div>{comment?.comment}</div>;
-          })}
-        </div>
+        <PostComments post={post} />
 
-        <div>
-          <label htmlFor="comment">Leave a Comment</label>
-          <input
-            type="text"
-            name="comment"
-            id="comment"
-            placeholder="comment...."
-          />
-        </div>
+        <CommentInput post={post} />
       </div>
     </div>
   );
