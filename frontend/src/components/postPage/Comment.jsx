@@ -4,11 +4,14 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import CommentOptions from "./CommentOptions";
+import CommentReplies from "./CommentReplies";
+import CommentReplyForm from "./CommentReplyForm";
 import EditCommentForm from "./EditCommentForm";
 import LikeComment from "./LikeComment";
 
 function Comment({ comment }) {
   const [isEditComment, setIsEditComment] = useState(false);
+  const [isReply, setIsReply] = useState(false);
 
   const { userId, comment: userComment, createdAt } = comment;
 
@@ -18,6 +21,10 @@ function Comment({ comment }) {
 
   const toggleEdit = () => {
     setIsEditComment(!isEditComment);
+  };
+
+  const toggleReply = () => {
+    setIsReply(!isReply);
   };
 
   return (
@@ -52,8 +59,15 @@ function Comment({ comment }) {
           userId={userId}
           commentId={comment?._id}
           toggleEdit={toggleEdit}
+          toggleReply={toggleReply}
         />
       </div>
+
+      <CommentReplies comment={comment} />
+
+      {isReply && (
+        <CommentReplyForm comment={comment} toggleReply={toggleReply} />
+      )}
     </div>
   );
 }

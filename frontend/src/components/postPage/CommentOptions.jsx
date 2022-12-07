@@ -1,9 +1,12 @@
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
 import React from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePostComments } from "../../features/post/postsSlice";
 
-function CommentOptions({ userId, commentId, toggleEdit }) {
+function CommentOptions({ userId, commentId, toggleEdit, toggleReply }) {
+  const [isReply, setIsReply] = useState(false);
+
   const { user } = useSelector((state) => state.auth);
   const post = useSelector((state) =>
     state.posts.posts.find((currentPost) =>
@@ -51,7 +54,12 @@ function CommentOptions({ userId, commentId, toggleEdit }) {
           </button>
         </div>
       ) : (
-        <button className="text-sm text-gray-600 mr-5">reply</button>
+        <button
+          onClick={() => toggleReply()}
+          className="text-sm text-gray-600 mr-5"
+        >
+          reply
+        </button>
       )}
     </div>
   );
