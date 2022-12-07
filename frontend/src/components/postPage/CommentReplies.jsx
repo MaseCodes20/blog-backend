@@ -10,8 +10,11 @@ function CommentReplies({ comment }) {
     setShowReplies(!showReplies);
   };
   return (
-    <div className="ml-4 my-2">
-      <button onClick={toggleShowReplies} className="text-gray-500 text-xs">
+    <div className="ml-5 my-2">
+      <button
+        onClick={toggleShowReplies}
+        className={`text-gray-500 text-xs ${showReplies && "mb-5"}`}
+      >
         <span className="mr-2">━━━━━</span> {showReplies ? "Hide" : "View"}{" "}
         replies ({replies.length})
       </button>

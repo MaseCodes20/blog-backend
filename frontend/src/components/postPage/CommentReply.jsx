@@ -2,13 +2,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
+import LikeReply from "./LikeReply";
 
 function CommentReply({ reply }) {
-  const { userId, comment: userComment, createdAt } = reply;
+  const { userId, comment: userReply, createdAt, likes } = reply;
 
   const commentUser = useSelector((state) =>
     state.users.users.find((user) => user?._id === reply?.userId)
   );
+
+  let totalLikes = likes.length;
+  const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
     <div className="mb-2 border-gray-200 border-b-[1px]">
@@ -25,9 +29,22 @@ function CommentReply({ reply }) {
         <h3 className="text-xs">{commentUser?.name}</h3>
       </Link>
 
-      <p className="mb-2">{userComment}</p>
+      <div className="flex items-center">
+        <p className="flex-1">{userReply}</p>
 
-      <p className="text-[10px] text-gray-600 mr-5 ">{format(createdAt)}</p>
+        <LikeReply reply={reply} />
+      </div>
+
+      <div className="flex items-center mt-2">
+        <p className="text-xs text-gray-500 mr-5 ">{format(createdAt)}</p>
+
+        {totalLikes >= 1 && (
+          <p className="text-sm text-gray-600 mr-3">
+            {numberFormat.format(totalLikes)}{" "}
+            {totalLikes === 1 ? "like" : "likes"}
+          </p>
+        )}
+      </div>
     </div>
   );
 }

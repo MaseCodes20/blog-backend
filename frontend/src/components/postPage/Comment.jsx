@@ -13,7 +13,7 @@ function Comment({ comment }) {
   const [isEditComment, setIsEditComment] = useState(false);
   const [isReply, setIsReply] = useState(false);
 
-  const { userId, comment: userComment, createdAt } = comment;
+  const { userId, comment: userComment, createdAt, likes } = comment;
 
   const commentUser = useSelector((state) =>
     state.users.users.find((user) => user?._id === userId)
@@ -26,6 +26,9 @@ function Comment({ comment }) {
   const toggleReply = () => {
     setIsReply(!isReply);
   };
+
+  let totalLikes = likes.length;
+  const numberFormat = new Intl.NumberFormat("en-US");
 
   return (
     <div className="mb-5">
@@ -53,7 +56,14 @@ function Comment({ comment }) {
       </div>
 
       <div className="flex items-center mt-2">
-        <p className="text-[10px] text-gray-600 mr-5 ">{format(createdAt)}</p>
+        <p className="text-sm text-gray-500 mr-3 ">{format(createdAt)}</p>
+
+        {totalLikes >= 1 && (
+          <p className="text-sm text-gray-600 mr-3">
+            {numberFormat.format(totalLikes)}{" "}
+            {totalLikes === 1 ? "like" : "likes"}
+          </p>
+        )}
 
         <CommentOptions
           userId={userId}
