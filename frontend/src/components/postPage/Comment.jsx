@@ -1,16 +1,24 @@
 import React from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { format } from "timeago.js";
 import CommentOptions from "./CommentOptions";
+import EditCommentForm from "./EditCommentForm";
 import LikeComment from "./LikeComment";
 
 function Comment({ comment }) {
+  const [isEditComment, setIsEditComment] = useState(false);
+
   const { userId, comment: userComment, createdAt } = comment;
 
   const commentUser = useSelector((state) =>
     state.users.users.find((user) => user?._id === userId)
   );
+
+  const toggleEdit = () => {
+    setIsEditComment(!isEditComment);
+  };
 
   return (
     <div className="mb-5">
@@ -28,14 +36,23 @@ function Comment({ comment }) {
       </Link>
 
       <div className="flex">
-        <p className="flex-1">{userComment}</p>
+        {isEditComment ? (
+          <EditCommentForm comment={comment} toggleEdit={toggleEdit} />
+        ) : (
+          <p className="flex-1">{userComment}</p>
+        )}
+
         <LikeComment comment={comment} />
       </div>
 
       <div className="flex items-center mt-2">
         <p className="text-[10px] text-gray-600 mr-5 ">{format(createdAt)}</p>
 
-        <CommentOptions userId={userId} commentId={comment?._id} />
+        <CommentOptions
+          userId={userId}
+          commentId={comment?._id}
+          toggleEdit={toggleEdit}
+        />
       </div>
     </div>
   );

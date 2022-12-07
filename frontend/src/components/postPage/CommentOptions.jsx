@@ -3,7 +3,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updatePostComments } from "../../features/post/postsSlice";
 
-function CommentOptions({ userId, commentId }) {
+function CommentOptions({ userId, commentId, toggleEdit }) {
   const { user } = useSelector((state) => state.auth);
   const post = useSelector((state) =>
     state.posts.posts.find((currentPost) =>
@@ -30,11 +30,15 @@ function CommentOptions({ userId, commentId }) {
 
     dipatch(updatePostComments(data));
   };
+
   return (
     <div className="">
       {user?._id === userId ? (
         <div className="flex items-center">
-          <button className="text-sm text-gray-600 mr-5 flex items-center">
+          <button
+            onClick={() => toggleEdit()}
+            className="text-sm text-gray-600 mr-5 flex items-center"
+          >
             <PencilAltIcon className="h-4 mr-1" />
             <p>edit</p>
           </button>
