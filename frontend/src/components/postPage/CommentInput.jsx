@@ -44,10 +44,10 @@ function CommentInput({ post }) {
         type="text"
         name="comment"
         id="comment"
-        placeholder="comment...."
+        placeholder="Add a comment...."
         onChange={(e) => setComment(e.target.value)}
         value={comment}
-        className="w-full mr-3"
+        className="w-full h-10 mr-3 border-[1px] rounded-full pl-3 border-gray-500 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px]"
       />
 
       <input

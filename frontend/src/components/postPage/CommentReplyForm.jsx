@@ -53,14 +53,14 @@ function CommentReplyForm({ comment, toggleReply }) {
         type="text"
         name="comment"
         id="comment"
-        className="flex-1"
+        className="flex-1 w-full mr-3 border-[1px] rounded-full pl-3 border-gray-500 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px]"
         value={commentReply}
         onChange={(e) => setCommentReply(e.target.value)}
       />
       <input
         type="submit"
         value="submit"
-        className="p-1 ml-3 text-[10px] cursor-pointer hover:bg-gray-700 bg-black text-white rounded-[76px] flex items-center justify-center"
+        className="p-[6px] ml-3 text-[10px] cursor-pointer hover:bg-gray-700 bg-black text-white rounded-[76px] flex items-center justify-center"
       />
     </form>
   );
