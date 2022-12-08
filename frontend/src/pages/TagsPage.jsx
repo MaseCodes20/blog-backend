@@ -19,7 +19,7 @@ function TagsPage() {
           ?.filter((value) => {
             if (searchTag === "") {
               return value;
-            } else if (value.categories.includes(searchTag)) {
+            } else if (value.tags.includes(searchTag)) {
               return value;
             } else {
               return null;

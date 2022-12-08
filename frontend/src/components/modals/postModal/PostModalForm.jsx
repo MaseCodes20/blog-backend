@@ -17,7 +17,7 @@ function PostModalForm() {
     title: "",
     content: "",
   });
-  const [categories, setCategpries] = useState([]);
+  const [tags, setTags] = useState([]);
 
   const { title, content } = inputs;
 
@@ -35,7 +35,7 @@ function PostModalForm() {
   };
 
   const handleCategories = (e) => {
-    setCategpries(e.target.value.split(","));
+    setTags(e.target.value.split(","));
   };
 
   const getImageUrl = async () => {
@@ -80,8 +80,8 @@ function PostModalForm() {
       token: user.token,
     };
 
-    if (categories.length >= 1) {
-      data.postData.categories = categories;
+    if (tags.length >= 1) {
+      data.postData.tags = tags;
     }
 
     if (selectedImage) {
@@ -159,14 +159,13 @@ function PostModalForm() {
       </div>
 
       <div className="flex flex-col mb-2">
-        <label htmlFor="categories" className="text-left text-[13px]">
-          Categories{" "}
-          <span className="text-[10px]">(separate categories by a comma)</span>
+        <label htmlFor="tags" className="text-left text-[13px]">
+          Tags <span className="text-[10px]">(separate tags by a comma)</span>
         </label>
         <input
           type="text"
-          name="categories"
-          id="categories"
+          name="tags"
+          id="tags"
           onChange={handleCategories}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />

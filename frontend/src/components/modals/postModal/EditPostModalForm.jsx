@@ -16,24 +16,22 @@ function EditPostModalForm({ post }) {
   const [displayedImage, setDisplayedImage] = useState("");
   const [postTitle, setPostTitle] = useState(post?.title);
   const [postContent, setPostContent] = useState(post?.content);
-  const [categories, setCategpries] = useState(post?.categories);
+  const [tags, setCategpries] = useState(post?.tags);
 
   const { user } = useSelector((state) => state.auth);
-  const { isError, isSuccess, newPost, message } = useSelector(
-    (state) => state.posts
-  );
+  const { isError, isSuccess, message } = useSelector((state) => state.posts);
 
   const filePickerRef = useRef();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleCategories = (e) => {
+  const handleTags = (e) => {
     setCategpries(e.target.value.split(","));
   };
 
   const allAreEqual = (array) => {
     const result = array.map((element, index) => {
-      if (element.includes(post?.categories[index])) {
+      if (element.includes(post?.tags[index])) {
         return true;
       } else {
         return false;
@@ -42,7 +40,7 @@ function EditPostModalForm({ post }) {
     return result.every((item) => item === true);
   };
 
-  let isCategoriesEqual = allAreEqual(categories);
+  let isTagsEqual = allAreEqual(tags);
 
   const getImageUrl = async () => {
     const formData = new FormData();
@@ -91,8 +89,8 @@ function EditPostModalForm({ post }) {
       data.postData.content = postContent;
     }
 
-    if (!isCategoriesEqual) {
-      data.postData.categories = categories;
+    if (!isTagsEqual) {
+      data.postData.tags = tags;
     }
 
     if (selectedImage) {
@@ -174,16 +172,15 @@ function EditPostModalForm({ post }) {
       </div>
 
       <div className="flex flex-col mb-2">
-        <label htmlFor="categories" className="text-left text-[13px]">
-          Categories{" "}
-          <span className="text-[10px]">(separate categories by a comma)</span>
+        <label htmlFor="tags" className="text-left text-[13px]">
+          Tags <span className="text-[10px]">(separate tags by a comma)</span>
         </label>
         <input
           type="text"
-          name="categories"
-          id="categories"
-          onChange={handleCategories}
-          value={categories}
+          name="tags"
+          id="tags"
+          onChange={handleTags}
+          value={tags}
           className="border border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black"
         />
       </div>

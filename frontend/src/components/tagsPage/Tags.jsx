@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 import TagCard from "./TagCard";
 
 function Tags() {
-  const categories = useSelector((state) =>
-    state.posts.posts.map((post) => post.categories)
+  const tags = useSelector((state) =>
+    state.posts.posts.map((post) => post.tags)
   )
     .join()
     .split(",");
 
   const getTags = () => {
     let Tags = [];
-    [...categories].map((category) => {
+    [...tags].map((category) => {
       if (Tags.find((item) => item.name === category)?.name === category) {
         return Tags.map((item) => {
           if (item.name === category) {
