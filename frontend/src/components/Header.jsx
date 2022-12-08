@@ -17,7 +17,6 @@ function Header() {
   let location = useLocation().pathname;
 
   const headerColor = location.split("/")[1];
-  console.log(headerColor);
 
   const listenScrollEvent = (event) => {
     if (window.scrollY > 680) {
@@ -38,7 +37,7 @@ function Header() {
   return (
     <div
       className={`h-[75px] border-b-[1px] border-black sticky top-0 z-10
-        ${headerColor || "bg-white"}`}
+        ${bgColor ? bgColor : headerColor || "bg-white"}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
         <Link to="/">

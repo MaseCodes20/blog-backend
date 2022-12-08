@@ -4,7 +4,10 @@ import { Link, useLocation } from "react-router-dom";
 import CommentInput from "../components/postPage/CommentInput";
 import PostComments from "../components/postPage/PostComments";
 import PostMenu from "../components/postPage/PostMenu";
+import TagCard from "../components/tags/TagCard";
+import Tags from "../components/tags/Tags";
 import { findPost } from "../features/post/postsSlice";
+import { clearSearchTag } from "../features/search/SearchTagSlice";
 
 function PostPage() {
   const location = useLocation();
@@ -34,6 +37,8 @@ function PostPage() {
     if (!postFound) {
       dispatch(findPost(postId));
     }
+
+    dispatch(clearSearchTag());
   }, [postFound, postId]);
 
   return (
@@ -70,6 +75,14 @@ function PostPage() {
 
       <div className="mb-10">
         <p>{post?.content}</p>
+      </div>
+
+      <div className="mb-10">
+        <p>{post?.content}</p>
+      </div>
+
+      <div className="mb-10">
+        <Tags tags={post?.tags} />
       </div>
 
       <div className="mb-10 border-[1px] border-black p-5 ">

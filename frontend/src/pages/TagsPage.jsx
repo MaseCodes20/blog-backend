@@ -1,17 +1,23 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Post from "../components/Post";
-import Tags from "../components/tagsPage/Tags";
+import Tags from "../components/tags/Tags";
 
 function TagsPage() {
   const { searchTag } = useSelector((state) => state.searchTag);
   const { posts } = useSelector((state) => state.posts);
 
+  const tags = useSelector((state) =>
+    state.posts.posts.map((post) => post.tags)
+  )
+    .join()
+    .split(",");
+
   return (
     <div className="pageContainer">
       <h1 className="pageTitle">Tags</h1>
 
-      <Tags />
+      <Tags tags={tags} />
 
       {/* Posts */}
       <div className="p-5 flex-[6] grid grid-cols-1 gap-5">
