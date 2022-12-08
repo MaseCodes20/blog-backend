@@ -33,6 +33,8 @@ function PostPage() {
     day: "numeric",
   };
 
+  const paragraphs = post?.content.split(/\r?\n|\r|\n/g);
+
   useEffect(() => {
     if (!postFound) {
       dispatch(findPost(postId));
@@ -74,11 +76,13 @@ function PostPage() {
       </div>
 
       <div className="mb-10">
-        <p>{post?.content}</p>
-      </div>
-
-      <div className="mb-10">
-        <p>{post?.content}</p>
+        {paragraphs?.map((paragraph, index) => {
+          return (
+            <div key={index}>
+              <p className="mb-10">{paragraph}</p>
+            </div>
+          );
+        })}
       </div>
 
       <div className="mb-10">
