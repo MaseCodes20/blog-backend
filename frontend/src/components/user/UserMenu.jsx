@@ -5,6 +5,7 @@ import {
   FolderRemoveIcon,
   UserIcon,
   PencilAltIcon,
+  UsersIcon,
 } from "@heroicons/react/outline";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,6 +76,20 @@ function UserMenu() {
                   } group flex w-full items-center px-2 py-2 text-sm`}
                 >
                   <BookmarkIcon className="h-5 mr-5" /> Bookmarks
+                </Link>
+              )}
+            </Menu.Item>
+          </div>
+          <div className="px-1 py-1">
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/following"
+                  className={`${
+                    active ? "bg-violet-500 text-white" : "text-gray-900"
+                  } group flex w-full items-center px-2 py-2 text-sm`}
+                >
+                  <UsersIcon className="h-5 mr-5" /> Following
                 </Link>
               )}
             </Menu.Item>

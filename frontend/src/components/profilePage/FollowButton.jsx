@@ -43,7 +43,7 @@ function FollowButton({ otherUser }) {
   return (
     <button
       onClick={toggleFollow}
-      className="w-[90px] h-[36px] bg-black text-white rounded-[76px] flex items-center justify-center"
+      className="w-[90px] h-[36px] bg-black hover:bg-gray-700 text-white rounded-[76px] flex items-center justify-center"
     >
       {isFollowing ? "Unfollow" : "Follow"}
     </button>

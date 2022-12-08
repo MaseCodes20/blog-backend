@@ -20,6 +20,7 @@ import BookmarksPage from "./pages/BookmarksPage";
 import ConnectModal from "./components/modals/connectModal/ConnectModal";
 import ShareModal from "./components/modals/shareModal/ShareModal";
 import EditProfileModal from "./components/modals/editProfileModal/EditProfileModal";
+import FollowingPage from "./pages/FollowingPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +65,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <BookmarksPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/following"
+            element={
+              <ProtectedRoute>
+                <FollowingPage />
               </ProtectedRoute>
             }
           />

@@ -52,7 +52,7 @@ function Header() {
             type="text"
             name="search"
             id=""
-            className="md:w-[600px] h-[30px] pl-8"
+            className="md:w-[600px] h-[30px] pl-8 w-full border-[1px] rounded-full  border-gray-500 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px]"
             placeholder="search..."
           />
         </div>
