@@ -32,6 +32,7 @@ const userSchema = new mongoose.Schema(
         postId: {
           type: String,
         },
+        createdAt: { type: Date, default: Date.now },
       },
     ],
     following: [
