@@ -4,17 +4,27 @@ import Post from "../Post";
 
 function Bookmarks() {
   const { user } = useSelector((state) => state.auth);
-  const userBookMarks = useSelector(
+  const userBookmarks = useSelector(
     (state) =>
       state.users.users.find((currentUser) => currentUser._id === user._id)
         ?.bookmarks
   );
 
+  const sortedBookmarks =
+    userBookmarks &&
+    [...userBookmarks]?.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+
   return (
     <>
-      {userBookMarks?.length >= 1 && (
+      {userBookmarks?.length < 1 ? (
+        <div className="flex items-center justify-center">
+          <p>Once you bookmark a post, you'll see them here</p>
+        </div>
+      ) : (
         <>
-          {userBookMarks?.map((bookmarks) => {
+          {sortedBookmarks?.map((bookmarks) => {
             return (
               <Post
                 key={bookmarks.postId}
