@@ -13,7 +13,7 @@ const postSchema = new mongoose.Schema(
     content: {
       type: String,
     },
-    categories: {
+    tags: {
       type: Array,
     },
     comments: [
