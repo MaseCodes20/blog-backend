@@ -8,6 +8,7 @@ import formSelectorReducer from "../features/user/formSelectorSlice";
 import postModalReducer from "../features/modals/postModalSlice";
 import shareModalReducer from "../features/modals/ShareModalSlice";
 import editProfileModalReducer from "../features/modals/editProfileModalSlice";
+import searchTagReducer from "../features/search/SearchTagSlice";
 
 export const store = configureStore({
   reducer: {
@@ -20,5 +21,6 @@ export const store = configureStore({
     editProfileModal: editProfileModalReducer,
     hasAccount: hasAccountReducer,
     formSelector: formSelectorReducer,
+    searchTag: searchTagReducer,
   },
 });

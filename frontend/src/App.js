@@ -21,6 +21,7 @@ import ConnectModal from "./components/modals/connectModal/ConnectModal";
 import ShareModal from "./components/modals/shareModal/ShareModal";
 import EditProfileModal from "./components/modals/editProfileModal/EditProfileModal";
 import FollowingPage from "./pages/FollowingPage";
+import TagsPage from "./pages/TagsPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -51,6 +52,8 @@ function App() {
           />
 
           <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
+
+          <Route path="/tags" element={<TagsPage />} />
 
           <Route
             path="/profile"

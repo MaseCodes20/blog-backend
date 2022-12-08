@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import UserMenu from "./user/UserMenu";
 import { SearchIcon } from "@heroicons/react/solid";
+import { TagIcon } from "@heroicons/react/outline";
 
 function Header() {
   const [bgColor, setbgColor] = useState("");
@@ -16,6 +17,7 @@ function Header() {
   let location = useLocation().pathname;
 
   const headerColor = location.split("/")[1];
+  console.log(headerColor);
 
   const listenScrollEvent = (event) => {
     if (window.scrollY > 680) {
@@ -36,7 +38,7 @@ function Header() {
   return (
     <div
       className={`h-[75px] border-b-[1px] border-black sticky top-0 z-10
-        ${location === "/" ? "home" : bgColor || headerColor}`}
+        ${headerColor || "bg-white"}`}
     >
       <div className="flex items-center justify-between py-[25px] pageContainer">
         <Link to="/">
@@ -59,7 +61,12 @@ function Header() {
 
         <div className="flex items-center text-[14px] h-[25px]">
           {user ? (
-            <UserMenu />
+            <>
+              <Link to="/tags">
+                <TagIcon className="h-7 mr-5" />
+              </Link>
+              <UserMenu />
+            </>
           ) : (
             <>
               <Link to="/about" className="mr-5">

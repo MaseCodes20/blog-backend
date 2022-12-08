@@ -24,6 +24,9 @@
   .creators {
     @apply bg-[#F24D2E];
   }
+  .tags {
+    @apply bg-white;
+  }
   .about {
     @apply bg-white;
   }
