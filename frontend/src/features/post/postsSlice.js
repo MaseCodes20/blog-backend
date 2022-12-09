@@ -71,6 +71,24 @@ export const updatePost = createAsyncThunk(
   }
 );
 
+export const updatePostLikes = createAsyncThunk(
+  "posts/updateLikes",
+  async (data, thunkAPI) => {
+    try {
+      return await postsService.likesUpdate(data);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
 export const updatePostComments = createAsyncThunk(
   "posts/updateComments",
   async (data, thunkAPI) => {
@@ -189,6 +207,21 @@ export const postsSlice = createSlice({
         ] = action.payload;
       })
       .addCase(updatePost.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updatePostLikes.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePostLikes.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.posts[
+          state.posts.findIndex((item) => item._id === action.payload._id)
+        ] = action.payload;
+      })
+      .addCase(updatePostLikes.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import CommentInput from "../components/postPage/CommentInput";
+import LikePost from "../components/postPage/LikePost";
 import PostComments from "../components/postPage/PostComments";
 import PostMenu from "../components/postPage/PostMenu";
-import TagCard from "../components/tags/TagCard";
 import Tags from "../components/tags/Tags";
-import { findPost } from "../features/post/postsSlice";
 import { clearSearchTag } from "../features/search/SearchTagSlice";
 
 function PostPage() {
@@ -16,39 +15,35 @@ function PostPage() {
   const postFound = useSelector((state) =>
     state.posts.posts.find((post) => post?._id === postId)
   );
-  const { post: pagePost } = useSelector((state) => state.posts);
-
-  let post = postFound || (pagePost && pagePost[0]);
 
   const dispatch = useDispatch();
 
   const author = useSelector((state) =>
-    state.users.users.find((author) => author?._id === post?.userId)
+    state.users.users.find((author) => author?._id === postFound?.userId)
   );
 
-  let date = new Date(post?.createdAt);
+  let date = new Date(postFound?.createdAt);
   const options = {
     year: "numeric",
     month: "short",
     day: "numeric",
   };
 
-  const paragraphs = post?.content.split(/\r?\n|\r|\n/g);
+  const paragraphs = postFound?.content.split(/\r?\n|\r|\n/g);
 
   useEffect(() => {
-    if (!postFound) {
-      dispatch(findPost(postId));
-    }
-
     dispatch(clearSearchTag());
-  }, [postFound, postId]);
+  }, []);
 
   return (
     <div className="pageContainer">
       <div className="mb-10">
         <div className="flex justify-between items-center">
-          <h1 className="text-[64px] font-semibold">{post?.title}</h1>
-          <PostMenu post={post} author={author} />
+          <h1 className="text-[64px] font-semibold">{postFound?.title}</h1>
+          <div className="flex items-center">
+            <LikePost post={postFound} />
+            <PostMenu post={postFound} author={author} />
+          </div>
         </div>
 
         <div className="flex items-center">
@@ -72,7 +67,11 @@ function PostPage() {
       </div>
 
       <div className="mb-10">
-        <img src={post?.image} alt={post?.title} className="max-h-[304px]" />
+        <img
+          src={postFound?.image}
+          alt={postFound?.title}
+          className="max-h-[304px]"
+        />
       </div>
 
       <div className="mb-10">
@@ -86,13 +85,13 @@ function PostPage() {
       </div>
 
       <div className="mb-10">
-        <Tags tags={post?.tags} />
+        <Tags tags={postFound?.tags} />
       </div>
 
       <div className="mb-10 border-[1px] border-black p-5 ">
-        <PostComments post={post} />
+        <PostComments post={postFound} />
 
-        <CommentInput post={post} />
+        <CommentInput post={postFound} />
       </div>
     </div>
   );

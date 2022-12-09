@@ -15,13 +15,16 @@ import { Link } from "react-router-dom";
 function UserMenu() {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const userProfilePicture = useSelector((state) =>
+    state.users.users.find((currentUser) => currentUser._id === user?._id)
+  )?.profilePicture;
 
   return (
     <Menu as="div" className="relative">
       <Menu.Button className=" flex items-center justify-center">
         <img
           src={
-            user.profilePicture ||
+            userProfilePicture ||
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
           }
           alt={user.name}

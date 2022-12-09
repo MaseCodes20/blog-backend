@@ -38,6 +38,16 @@ const postUpdate = async (data) => {
   return response.data;
 };
 
+// Update Post Likes in Database
+const likesUpdate = async (data) => {
+  const { postData, token, postId } = data;
+  const response = await axios.put(`${API_URL}/${postId}/likes`, postData, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+
+  return response.data;
+};
+
 // Update Post Comments in Database
 const commentsUpdate = async (data) => {
   const { postData, token, postId } = data;
@@ -63,6 +73,7 @@ const postsService = {
   setPost,
   removePost,
   postUpdate,
+  likesUpdate,
   commentsUpdate,
 };
 
