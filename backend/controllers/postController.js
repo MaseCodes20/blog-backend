@@ -89,6 +89,38 @@ const updatePost = asyncHandler(async (req, res) => {
   }
 });
 
+// @desx Update Likes
+// @route Put /api/v1/Posts/:postId/comments
+// @access Public
+const updateLikes = asyncHandler(async (req, res) => {
+  const post = await Post.findById(req.params.postId);
+
+  if (!post) {
+    res.status(404);
+    throw new Error("Post does not exist");
+  }
+
+  if (!req.body.likes) {
+    res.status(404);
+    throw new Error("Only likes that can be updated");
+  }
+
+  try {
+    const updatedPostLikes = await Post.findByIdAndUpdate(
+      req.params.postId,
+      { likes: req.body.likes },
+      {
+        new: true,
+      }
+    );
+
+    res.status(200).json(updatedPostLikes);
+  } catch (error) {
+    res.status(500);
+    throw new Error(error);
+  }
+});
+
 // @desx Update Comments
 // @route Put /api/v1/Posts/:postId/comments
 // @access Public
@@ -155,4 +187,5 @@ module.exports = {
   updatePost,
   deletePost,
   updateComments,
+  updateLikes,
 };

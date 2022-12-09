@@ -11,6 +11,7 @@ const {
   updatePost,
   deletePost,
   updateComments,
+  updateLikes,
 } = require("../controllers/postController");
 
 router.route("/").get(getAllPosts).get(getPost).post(setPost);
@@ -20,6 +21,7 @@ router
   .put(verifyToken, updatePost)
   .delete(verifyToken, deletePost);
 router.route("/:postId/comments").put(verifyToken, updateComments);
+router.route("/:postId/likes").put(verifyToken, updateLikes);
 router.route("/find/:userID").get(getUserPosts);
 
 module.exports = router;
