@@ -31,6 +31,9 @@ function PostPage() {
 
   const paragraphs = postFound?.content.split(/\r?\n|\r|\n/g);
 
+  let totalLikes = postFound?.likes.length;
+  const numberFormat = new Intl.NumberFormat("en-US");
+
   useEffect(() => {
     dispatch(clearSearchTag());
   }, []);
@@ -62,7 +65,14 @@ function PostPage() {
             <p>{author?.name}</p>
           </Link>
 
-          <p>{date.toLocaleString(undefined, options)}</p>
+          <p className="mr-5">{date.toLocaleString(undefined, options)}</p>
+
+          {totalLikes >= 1 && (
+            <p className="text-gray-600 mr-3">
+              {numberFormat.format(totalLikes)}{" "}
+              {totalLikes === 1 ? "like" : "likes"}
+            </p>
+          )}
         </div>
       </div>
 
