@@ -11,18 +11,22 @@ function CommentReplies({ comment }) {
   };
   return (
     <div className="ml-5 my-2">
-      <button
-        onClick={toggleShowReplies}
-        className={`text-gray-500 text-xs ${showReplies && "mb-5"}`}
-      >
-        <span className="mr-2">━━━━━</span> {showReplies ? "Hide" : "View"}{" "}
-        replies ({replies.length})
-      </button>
-      {showReplies && (
+      {replies.length >= 1 && (
         <>
-          {replies?.map((reply) => {
-            return <CommentReply key={reply._id} reply={reply} />;
-          })}
+          <button
+            onClick={toggleShowReplies}
+            className={`text-gray-500 text-xs ${showReplies && "mb-5"}`}
+          >
+            <span className="mr-2">━━━━━</span> {showReplies ? "Hide" : "View"}{" "}
+            replies ({replies.length})
+          </button>
+          {showReplies && (
+            <>
+              {replies?.map((reply) => {
+                return <CommentReply key={reply._id} reply={reply} />;
+              })}
+            </>
+          )}
         </>
       )}
     </div>

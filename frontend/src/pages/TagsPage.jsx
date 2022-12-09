@@ -20,7 +20,7 @@ function TagsPage() {
       <Tags tags={tags} />
 
       {/* Posts */}
-      <div className="p-5 flex-[6] grid grid-cols-1 gap-5">
+      <div className="grid grid-cols-l md:grid-cols-2 justify-items-center my-10 gap-5">
         {posts
           ?.filter((value) => {
             if (searchTag === "") {
