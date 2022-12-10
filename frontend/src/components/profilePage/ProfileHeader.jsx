@@ -22,8 +22,15 @@ function ProfileHeader({ author }) {
 
   return (
     <>
-      <div className="w-full h-[206px] flex items-center justify-center bg-gray-200">
-        <h3>Banner</h3>
+      <div className="w-full h-[206px]  bg-gray-200">
+        <img
+          src={
+            userProfile?.banner ||
+            "https://static.vecteezy.com/system/resources/thumbnails/005/715/816/small/banner-abstract-background-board-for-text-and-message-design-modern-free-vector.jpg"
+          }
+          alt={userProfile?.name}
+          className="object-cover h-[206px] w-full"
+        />
       </div>
 
       <div className="flex items-center justify-between my-5">

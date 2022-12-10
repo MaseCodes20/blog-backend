@@ -33,6 +33,15 @@ function SignUpForm() {
     }));
   };
 
+  const generateUsername = () => {
+    const nameArray = name?.split(" ");
+    const firstName = nameArray[0];
+    const lastName = nameArray[nameArray.length - 1];
+    const randomNumber = Math.floor(100000 + Math.random() * 900000);
+
+    return `${firstName[0]}${lastName}${randomNumber}`;
+  };
+
   const submitForm = (e) => {
     e.preventDefault();
 
@@ -40,6 +49,7 @@ function SignUpForm() {
 
     let userData = {
       name,
+      username: generateUsername(),
       email,
       password,
     };

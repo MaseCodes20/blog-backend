@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { updateUser } from "../../features/users/usersSlice";
 
 function FollowButton({ otherUser }) {
@@ -9,6 +10,7 @@ function FollowButton({ otherUser }) {
   );
 
   const dispatch = useDispatch();
+  const location = useLocation().pathname;
 
   let isFollowing = !!userData?.following.find(
     (user) => user?.userId === otherUser?._id
@@ -43,7 +45,9 @@ function FollowButton({ otherUser }) {
   return (
     <button
       onClick={toggleFollow}
-      className="w-[90px] h-[36px] bg-black hover:bg-gray-700 text-white rounded-[76px] flex items-center justify-center"
+      className={`${
+        location === "/" ? "w-[70px] h-[26px] text-sm" : "w-[90px] h-[36px]"
+      } w-[90px] h-[36px] bg-black hover:bg-gray-700 text-white rounded-[76px] flex items-center justify-center`}
     >
       {isFollowing ? "Unfollow" : "Follow"}
     </button>

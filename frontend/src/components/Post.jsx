@@ -21,20 +21,23 @@ function Post({ postId }) {
   return (
     <>
       {post && (
-        <Link to={`/post/${post?._id}`} className="flex items-center shadow-md">
+        <Link
+          to={`/post/${post?._id}`}
+          className="flex items-center w-full truncate shadow-md"
+        >
           {post?.image ? (
             <img
               src={post?.image}
               alt={post?.title}
-              className="w-[200px] h-[134px] object-cover mr-5"
+              className="w-[200px] h-[134px] object-cover"
             />
           ) : (
-            <div className="w-[200px] h-[134px] bg-gray-200 flex items-center justify-center mr-5">
+            <div className="w-[200px] h-[134px] bg-gray-200 flex items-center justify-center">
               <p className="uppercase">{post?.title}</p>
             </div>
           )}
 
-          <div>
+          <div className="mx-5 w-fit truncate">
             <div className="flex items-center">
               <img
                 src={
@@ -51,9 +54,7 @@ function Post({ postId }) {
               {post?.title}
             </h1>
 
-            <p className="w-[160px] md:w-[240px] text-[20px] truncate">
-              {post?.content}
-            </p>
+            <p className="text-[20px] truncate w-full">{post?.content}</p>
 
             {post?.createdAt && (
               <p>{date.toLocaleString(undefined, options)}</p>
