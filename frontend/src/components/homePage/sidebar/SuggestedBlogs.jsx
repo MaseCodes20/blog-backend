@@ -1,25 +1,16 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import FollowButton from "../../profilePage/FollowButton";
 
-function SuggestedBlogs() {
-  const { user } = useSelector((state) => state.auth);
-  const users = useSelector((state) =>
-    state.users.users.filter((selectedUser) => selectedUser._id !== user?._id)
-  );
-
-  let randomUsers = users
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)
-    .slice(0, 4);
-
+function SuggestedBlogs({ suggestedUsers }) {
   return (
     <div>
-      {randomUsers?.map((suggestUser) => {
+      {suggestedUsers?.map((suggestUser) => {
         return (
-          <div key={suggestUser?._id} className="flex items-center mb-3">
+          <div
+            key={suggestUser?._id}
+            className="flex items-center mb-3 bg-gray-200 hover:bg-gray-300 rounded-md p-2"
+          >
             <Link
               to={`profile/${suggestUser?._id}`}
               className="flex flex-1 items-center"
