@@ -6,8 +6,8 @@ import { toggleFalse, toggleTrue } from "../features/user/hasAccountSlice";
 import { useEffect } from "react";
 import { useState } from "react";
 import UserMenu from "./user/UserMenu";
-import { SearchIcon } from "@heroicons/react/solid";
 import { TagIcon } from "@heroicons/react/outline";
+import SearchBar from "./SearchBar";
 
 function Header() {
   const [bgColor, setbgColor] = useState("");
@@ -44,19 +44,7 @@ function Header() {
           <h1>devLog(s)</h1>
         </Link>
 
-        <div className="relative h-[30px]">
-          <div className="absolute left-0 ml-2 h-full flex items-center">
-            <SearchIcon className="h-4" />
-          </div>
-
-          <input
-            type="text"
-            name="search"
-            id=""
-            className="md:w-[600px] h-[30px] pl-8 w-full border-[1px] rounded-full  border-gray-500 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px]"
-            placeholder="search..."
-          />
-        </div>
+        <SearchBar />
 
         <div className="flex items-center text-[14px] h-[25px]">
           {user ? (

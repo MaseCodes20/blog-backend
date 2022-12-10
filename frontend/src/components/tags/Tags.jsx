@@ -4,17 +4,17 @@ import TagCard from "./TagCard";
 function Tags({ tags }) {
   const getTags = () => {
     let allTags = [];
-    [...tags].map((category) => {
-      if (allTags.find((item) => item.name === category)?.name === category) {
+    tags.map((tag) => {
+      if (allTags.find((item) => item.name === tag)?.name === tag) {
         return allTags.map((item) => {
-          if (item.name === category) {
+          if (item.name === tag) {
             return { ...item, total: item.total++ };
           } else {
             return item;
           }
         });
       } else {
-        allTags.push({ name: category, total: 1 });
+        allTags.push({ name: tag, total: 1 });
       }
     });
     return allTags;
