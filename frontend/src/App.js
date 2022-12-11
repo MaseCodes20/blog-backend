@@ -22,6 +22,7 @@ import ShareModal from "./components/modals/shareModal/ShareModal";
 import EditProfileModal from "./components/modals/editProfileModal/EditProfileModal";
 import FollowingPage from "./pages/FollowingPage";
 import TagsPage from "./pages/TagsPage";
+import LikesPage from "./pages/LikesPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -68,6 +69,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <BookmarksPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/likes"
+            element={
+              <ProtectedRoute>
+                <LikesPage />
               </ProtectedRoute>
             }
           />

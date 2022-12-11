@@ -6,6 +6,7 @@ import {
   UserIcon,
   PencilAltIcon,
   UsersIcon,
+  ThumbUpIcon,
 } from "@heroicons/react/outline";
 import { logout } from "../../features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
@@ -93,6 +94,20 @@ function UserMenu() {
                   } group flex w-full items-center px-2 py-2 text-sm`}
                 >
                   <UsersIcon className="h-5 mr-5" /> Following
+                </Link>
+              )}
+            </Menu.Item>
+          </div>
+          <div className="px-1 py-1">
+            <Menu.Item>
+              {({ active }) => (
+                <Link
+                  to="/likes"
+                  className={`${
+                    active ? "bg-violet-500 text-white" : "text-gray-900"
+                  } group flex w-full items-center px-2 py-2 text-sm`}
+                >
+                  <ThumbUpIcon className="h-5 mr-5" /> Likes
                 </Link>
               )}
             </Menu.Item>

@@ -5,7 +5,9 @@ function SuggestedBlogs({ suggestedUsers }) {
   return (
     <div>
       {suggestedUsers?.map((suggestUser) => {
-        return <SuggestedBlog suggestUser={suggestUser} />;
+        return (
+          <SuggestedBlog key={suggestUser?._id} suggestUser={suggestUser} />
+        );
       })}
     </div>
   );
