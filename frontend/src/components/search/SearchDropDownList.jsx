@@ -39,10 +39,14 @@ function SearchDropDownList() {
   return (
     <>
       {searchTerm !== "" && (
-        <div className="absolute right-0 mt-[19px] h-[480px] w-full origin-top-right divide-y  bg-white shadow-lg overflow-y-scroll">
-          <SearchedTags searchedTags={searchedTags} />
+        <div className="absolute right-0 mt-[19px] max-h-[480px] w-full origin-top-right divide-y  bg-white shadow-lg overflow-y-scroll">
+          {searchedTags.length > 1 && (
+            <SearchedTags searchedTags={searchedTags} />
+          )}
 
-          <SearchedBlogs searchedBlogs={searchedBlogs} />
+          {searchedBlogs.length > 1 && (
+            <SearchedBlogs searchedBlogs={searchedBlogs} />
+          )}
         </div>
       )}
     </>

@@ -3,26 +3,33 @@ import Header from "./components/Header";
 import Home from "./pages/Home";
 import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import BlogTermsOfService from "./pages/BlogTermsOfService";
-import BlogPrivacyPolicy from "./pages/BlogPrivacyPolicy";
-import Creators from "./pages/Creators";
-import OurStory from "./pages/OurStory";
-import PostModal from "./components/modals/postModal/PostModal";
-import ProfilePage from "./pages/ProfilePage";
 import ProtectedRoute from "./components/ProtectedRoute";
-import PostPage from "./pages/PostPage";
-import AuthorProfilePage from "./pages/AuthorProfilePage";
 import { allUsers } from "./features/users/usersSlice";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
-import BookmarksPage from "./pages/BookmarksPage";
-import ConnectModal from "./components/modals/connectModal/ConnectModal";
-import ShareModal from "./components/modals/shareModal/ShareModal";
-import EditProfileModal from "./components/modals/editProfileModal/EditProfileModal";
-import FollowingPage from "./pages/FollowingPage";
-import TagsPage from "./pages/TagsPage";
-import LikesPage from "./pages/LikesPage";
+
+const OurStory = lazy(() => import("./pages/OurStory"));
+const Creators = lazy(() => import("./pages/Creators"));
+const PostPage = lazy(() => import("./pages/PostPage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+const AuthorProfilePage = lazy(() => import("./pages/AuthorProfilePage"));
+const BlogTermsOfService = lazy(() => import("./pages/BlogTermsOfService"));
+const BlogPrivacyPolicy = lazy(() => import("./pages/BlogPrivacyPolicy"));
+const TagsPage = lazy(() => import("./pages/TagsPage"));
+const LikesPage = lazy(() => import("./pages/LikesPage"));
+const BookmarksPage = lazy(() => import("./pages/BookmarksPage"));
+const FollowingPage = lazy(() => import("./pages/FollowingPage"));
+const PostModal = lazy(() => import("./components/modals/postModal/PostModal"));
+const ShareModal = lazy(() =>
+  import("./components/modals/shareModal/ShareModal")
+);
+const EditProfileModal = lazy(() =>
+  import("./components/modals/editProfileModal/EditProfileModal")
+);
+const ConnectModal = lazy(() =>
+  import("./components/modals/connectModal/ConnectModal")
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -39,28 +46,77 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
 
-          <Route path="/about" element={<OurStory />} />
+          <Route
+            path="/about"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <OurStory />
+              </Suspense>
+            }
+          />
 
-          <Route path="/creators" element={<Creators />} />
+          <Route
+            path="/creators"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Creators />
+              </Suspense>
+            }
+          />
 
-          <Route path="/post/:id" element={<PostPage />} />
+          <Route
+            path="/post/:id"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <PostPage />
+              </Suspense>
+            }
+          />
 
-          <Route path="/profile/:id" element={<AuthorProfilePage />} />
+          <Route
+            path="/profile/:id"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <AuthorProfilePage />
+              </Suspense>
+            }
+          />
 
           <Route
             path="/blog-terms-of-service"
-            element={<BlogTermsOfService />}
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <BlogTermsOfService />
+              </Suspense>
+            }
           />
 
-          <Route path="/blog-privacy-policy" element={<BlogPrivacyPolicy />} />
+          <Route
+            path="/blog-privacy-policy"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <BlogPrivacyPolicy />
+              </Suspense>
+            }
+          />
 
-          <Route path="/tags" element={<TagsPage />} />
+          <Route
+            path="/tags"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                {" "}
+                <TagsPage />
+              </Suspense>
+            }
+          />
 
           <Route
             path="/profile"
             element={
               <ProtectedRoute>
-                <ProfilePage />
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <ProfilePage />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -68,7 +124,9 @@ function App() {
             path="/bookmarks"
             element={
               <ProtectedRoute>
-                <BookmarksPage />
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <BookmarksPage />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -76,7 +134,9 @@ function App() {
             path="/likes"
             element={
               <ProtectedRoute>
-                <LikesPage />
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <LikesPage />
+                </Suspense>
               </ProtectedRoute>
             }
           />
@@ -84,16 +144,29 @@ function App() {
             path="/following"
             element={
               <ProtectedRoute>
-                <FollowingPage />
+                <Suspense fallback={<h1>Loading...</h1>}>
+                  <FollowingPage />
+                </Suspense>
               </ProtectedRoute>
             }
           />
         </Routes>
 
-        <PostModal />
-        <ShareModal />
-        <EditProfileModal />
-        <ConnectModal />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <PostModal />
+        </Suspense>
+
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <ShareModal />
+        </Suspense>
+
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <EditProfileModal />
+        </Suspense>
+
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <ConnectModal />
+        </Suspense>
       </Router>
 
       <ToastContainer position="top-center" transition={Slide} />
