@@ -39,8 +39,8 @@ function Header() {
       className={`h-[75px] border-b-[1px] border-black sticky top-0 z-10
         ${bgColor ? bgColor : headerColor || "bg-white"}`}
     >
-      <div className="flex items-center justify-between py-[25px] pageContainer">
-        <Link to="/">
+      <div className="flex items-center justify-between py-[25px]  pageContainer">
+        <Link to="/" className="mr-5">
           <h1>devLog(s)</h1>
         </Link>
 
@@ -50,7 +50,7 @@ function Header() {
           {user ? (
             <>
               <Link to="/tags">
-                <TagIcon className="h-7 mr-5" />
+                <TagIcon className="h-7 mx-5" />
               </Link>
               <UserMenu />
             </>

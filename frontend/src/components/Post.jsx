@@ -23,13 +23,13 @@ function Post({ postId }) {
       {post && (
         <Link
           to={`/post/${post?._id}`}
-          className="flex items-center w-full truncate shadow-md"
+          className="md:flex items-center w-full truncate shadow-md"
         >
           {post?.image ? (
             <img
               src={post?.image}
               alt={post?.title}
-              className="w-[200px] h-[134px] object-cover"
+              className="w-full md:w-[200px] h-[134px] object-cover"
             />
           ) : (
             <div className="w-[200px] h-[134px] bg-gray-200 flex items-center justify-center">
@@ -37,7 +37,7 @@ function Post({ postId }) {
             </div>
           )}
 
-          <div className="mx-5 w-fit truncate">
+          <div className="my-3 md:my-0 mx-2 md:mx-5 w-fit truncate">
             <div className="flex items-center">
               <img
                 src={
@@ -45,19 +45,23 @@ function Post({ postId }) {
                   "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 }
                 alt={author?.name}
-                className="w-[20px] h-[20px] mr-[10px] rounded-full object-cover "
+                className="w-[16px] h-[16px] md:w-[20px] md:h-[20px] mr-[10px] rounded-full object-cover "
               />
-              <h3>{author?.name}</h3>
+              <h3 className="text-sm">{author?.name}</h3>
             </div>
 
-            <h1 className="text-[28px] w-[240px] font-semibold truncate">
+            <h1 className="text-[20px] md:text-[28px] w-[240px] font-semibold truncate">
               {post?.title}
             </h1>
 
-            <p className="text-[20px] truncate w-full">{post?.content}</p>
+            <p className="text-sm md:text-[20px] truncate max-w-[280px] md:w-full">
+              {post?.content}
+            </p>
 
             {post?.createdAt && (
-              <p>{date.toLocaleString(undefined, options)}</p>
+              <p className="text-xs md:text-base">
+                {date.toLocaleString(undefined, options)}
+              </p>
             )}
           </div>
         </Link>

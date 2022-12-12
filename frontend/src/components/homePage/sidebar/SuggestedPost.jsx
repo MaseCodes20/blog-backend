@@ -27,7 +27,7 @@ function SuggestedPost({ post }) {
             alt={author?.name}
             className="w-[20px] h-[20px] mr-[10px] rounded-full object-cover "
           />
-          <h3>{author?.name}</h3>
+          <h3 className="text-xs lg:text-base">{author?.name}</h3>
         </Link>
 
         <FollowButton otherUser={author} />
