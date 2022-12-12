@@ -1,19 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearSearch } from "../../features/search/SearchSlice";
 import FollowButton from "../profilePage/FollowButton";
 
 function SearchedBlog({ blog }) {
-  const dispatch = useDispatch();
-
   return (
     <div className="flex items-center mb-3 bg-gray-200 hover:bg-gray-300 rounded-md p-2 mx-2">
-      <Link
-        to={`profile/${blog?._id}`}
-        className="flex flex-1 items-center"
-        onClick={() => dispatch(clearSearch())}
-      >
+      <Link to={`profile/${blog?._id}`} className="flex flex-1 items-center">
         <img
           src={
             blog?.profilePicture ||

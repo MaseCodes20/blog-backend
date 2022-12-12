@@ -9,7 +9,7 @@ function SuggestedPost({ post }) {
     state.users.users.find((user) => user._id === post?.userId)
   );
 
-  let totalLikes = post?.likes.length;
+  let totalLikes = post?.likes?.length;
   const numberFormat = new Intl.NumberFormat("en-US");
 
   return (

@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { clearSearch } from "../../features/search/SearchSlice";
 import { setSearchTag } from "../../features/search/SearchTagSlice";
 
 function SearchedTag({ tag }) {
@@ -15,7 +14,6 @@ function SearchedTag({ tag }) {
         onClick={() => {
           dispatch(setSearchTag(tag));
           navigate("/tags");
-          dispatch(clearSearch());
         }}
       >
         #{tag}

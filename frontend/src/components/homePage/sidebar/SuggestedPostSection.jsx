@@ -1,19 +1,45 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import SuggestedPost from "./SuggestedPost";
 
 function SuggestedPostSection() {
+  const [suggestedPost, setSuggestedPost] = useState(null);
   const { user } = useSelector((state) => state.auth);
-  const posts = useSelector((state) =>
-    state.posts.posts.filter(
-      (selectedPost) => selectedPost.userId !== user?._id
-    )
-  );
 
-  let randomPost = posts
-    .map((value) => ({ value, sort: Math.random() }))
-    .sort((a, b) => a.sort - b.sort)
-    .map(({ value }) => value)[0];
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    const fetchRandomPost = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/api/v1/posts", {
+          signal,
+        });
+        const suggestedPost = response.data
+          ?.filter((selectedPost) => selectedPost.userId !== user?._id)
+          .map((value) => ({ value, sort: Math.random() }))
+          .sort((a, b) => a.sort - b.sort)
+          .map(({ value }) => value)[0];
+
+        setSuggestedPost(suggestedPost);
+      } catch (error) {
+        if (error.name === "AbortError") {
+          console.log("fetch Suggested Blogs cancelled!");
+        } else {
+          console.log(error.message);
+        }
+      }
+
+      return () => {
+        controller.abort();
+      };
+    };
+
+    fetchRandomPost();
+  }, [user?._id]);
 
   return (
     <div className="w-full p-3 mb-5">
@@ -21,7 +47,7 @@ function SuggestedPostSection() {
 
       {/* Post */}
 
-      <SuggestedPost post={randomPost} />
+      <SuggestedPost post={suggestedPost} />
     </div>
   );
 }
