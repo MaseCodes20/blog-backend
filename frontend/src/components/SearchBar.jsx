@@ -1,9 +1,13 @@
 import { SearchIcon } from "@heroicons/react/solid";
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearch } from "../features/search/SearchSlice";
 import SearchDropDownList from "./search/SearchDropDownList";
 
 function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
+  const { searchTerm } = useSelector((state) => state.search);
+
+  const dispatch = useDispatch();
 
   return (
     <div className="relative ">
@@ -19,11 +23,11 @@ function SearchBar() {
           value={searchTerm}
           className="md:w-[600px] h-[30px] pl-8 w-full border-[1px] rounded-full  border-gray-500 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px]"
           placeholder="search..."
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => dispatch(setSearch(e.target.value))}
         />
       </div>
 
-      <SearchDropDownList searchTerm={searchTerm} />
+      <SearchDropDownList />
     </div>
   );
 }
