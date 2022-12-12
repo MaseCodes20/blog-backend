@@ -29,7 +29,7 @@ function TagCard({ tag }) {
   return (
     <button
       onClick={toggleSearchButton}
-      className={`flex items-center justify-between w-[200px] truncate p-2 border-black border-2 ${
+      className={`flex items-center justify-between w-[180px] md:w-[200px] truncate p-2 border-black border-2 ${
         searchTag === tag.name ? "bg-white text-black" : "bg-black"
       } text-white rounded-md shadow-md`}
     >
