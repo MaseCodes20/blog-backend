@@ -8,6 +8,7 @@ import { useState } from "react";
 import UserMenu from "./user/UserMenu";
 import { TagIcon } from "@heroicons/react/outline";
 import SearchBar from "./SearchBar";
+import MobileMenu from "./MobileMenu";
 
 function Header() {
   const [bgColor, setbgColor] = useState("");
@@ -56,17 +57,19 @@ function Header() {
             </>
           ) : (
             <>
-              <Link to="/about" className="mr-5">
+              <MobileMenu />
+
+              <Link to="/about" className="mr-5 hidden lg:block">
                 Our Story
               </Link>
 
-              <Link className="mr-5">Membership</Link>
+              <Link className="hidden lg:block">Membership</Link>
 
-              <Link to="/creators" className="mr-5">
+              <Link to="/creators" className="hidden lg:block">
                 Write
               </Link>
               <button
-                className="mr-5"
+                className="hidden lg:block"
                 onClick={() => {
                   dispatch(open());
                   dispatch(toggleTrue());
