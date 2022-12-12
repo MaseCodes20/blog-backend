@@ -47,9 +47,9 @@ function FollowButton({ otherUser }) {
       onClick={toggleFollow}
       className={`${
         location === "/"
-          ? "w-[48px] h-[18px] text-[10px] lg:text-sm"
-          : "w-[90px] h-[36px]"
-      } w-[90px] h-[36px] bg-black hover:bg-gray-700 text-white rounded-[76px] flex items-center justify-center`}
+          ? "w-[48px] h-[18px] md:text-[10px] "
+          : "w-[48px] h-[18px] md:w-[70px] md:h-[30px] lg:w-[90px] lg:h-[36px]"
+      } w-[48px] h-[18px] lg:w-[90px] lg:h-[36px] text-[10px] md:text-sm lg:text-base bg-black hover:bg-gray-700 text-white rounded-[76px] flex items-center justify-center`}
     >
       {isFollowing ? "Unfollow" : "Follow"}
     </button>

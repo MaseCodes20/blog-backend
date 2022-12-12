@@ -7,7 +7,7 @@
     @apply xl:mx-auto xl:max-w-6xl mx-2;
   }
   .pageTitle {
-    @apply text-5xl font-bold mt-10;
+    @apply text-xl md:text-3xl lg:text-5xl font-bold mt-10;
   }
   .signInSignOutButton {
     @apply pt-[7px] px-[16px] pb-[9px] border-2 border-black bg-black hover:bg-transparent hover:text-black rounded-full text-white font-medium;
