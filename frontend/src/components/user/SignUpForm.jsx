@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { close } from "../../features/modals/connectModalSlice";
 import { deselectSignUp } from "../../features/user/formSelectorSlice";
 import ShowPasswordButton from "./ShowPasswordButton";
+import { allUsers } from "../../features/users/usersSlice";
 
 function SignUpForm() {
   const [formData, setFromData] = useState({
@@ -73,6 +74,7 @@ function SignUpForm() {
     if (isSuccess || user) {
       navigate("/");
       dispatch(close());
+      dispatch(allUsers());
     }
 
     dispatch(reset());
