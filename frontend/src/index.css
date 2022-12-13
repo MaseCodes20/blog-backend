@@ -12,23 +12,17 @@
   .signInSignOutButton {
     @apply hidden lg:block pt-[7px] px-[16px] pb-[9px] border-2 border-black bg-black hover:bg-transparent hover:text-black rounded-full text-white font-medium;
   }
-  .home {
-    @apply bg-yellow-500;
-  }
-  .profile {
-    @apply bg-white;
-  }
-  .post {
+  .profile,
+  .bookmarks,
+  .post,
+  .tags,
+  .about,
+  .following,
+  .likes {
     @apply bg-white;
   }
   .creators {
     @apply bg-[#F24D2E];
-  }
-  .tags {
-    @apply bg-white;
-  }
-  .about {
-    @apply bg-white;
   }
   .creatorsButtonStart {
     @apply border-white border-2 bg-white hover:bg-[#F24D2E] text-black;
@@ -88,7 +82,7 @@
     @apply text-center border-b border-gray-300 hover:border-black focus:ring-0 focus:outline-none focus:border-b focus:border-black pb-[2px];
   }
   .signInOrSignUpFormButton {
-    @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] bg-black rounded-full text-white font-medium cursor-pointer;
+    @apply my-5 w-[220px] pt-[7px] px-[16px] pb-[9px] border-2 bg-black border-black  hover:bg-transparent hover:text-black rounded-full text-white font-medium cursor-pointer;
   }
   .signInOrSignUpFormError {
     @apply text-red-600 text-[13px];

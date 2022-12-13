@@ -35,8 +35,11 @@ function AboutSection() {
               allow="autoplay; fullscreen"
               width="100%"
               height="460"
+              title="Globe Final from Ryan Hubbard on Vimeo"
               allowFullScreen={false}
-            ></iframe>
+            >
+              Globe Final from Ryan Hubbard on Vimeo
+            </iframe>
           </div>
         </div>
       </div>

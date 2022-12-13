@@ -14,7 +14,7 @@ function Tags({ tags }) {
           }
         });
       } else {
-        allTags.push({ name: tag, total: 1 });
+        return allTags.push({ name: tag, total: 1 });
       }
     });
     return allTags;

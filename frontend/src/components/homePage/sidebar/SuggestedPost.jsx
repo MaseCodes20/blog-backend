@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import LikePost from "../../postPage/LikePost";
 import FollowButton from "../../profilePage/FollowButton";
 
 function SuggestedPost({ post }) {
@@ -9,11 +8,8 @@ function SuggestedPost({ post }) {
     state.users.users.find((user) => user._id === post?.userId)
   );
 
-  let totalLikes = post?.likes?.length;
-  const numberFormat = new Intl.NumberFormat("en-US");
-
   return (
-    <>
+    <div className="min-h-[252px]">
       <div className="flex items-center p-2 rounded-t-md bg-gray-200">
         <Link
           to={`profile/${author?._id}`}
@@ -46,7 +42,7 @@ function SuggestedPost({ post }) {
           </div>
         )}
       </Link>
-    </>
+    </div>
   );
 }
 

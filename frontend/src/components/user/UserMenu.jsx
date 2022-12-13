@@ -29,7 +29,9 @@ function UserMenu() {
             "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
           }
           alt={user.name}
-          className="w-[30px] h-[30px] mr-[10px] rounded-full object-cover"
+          width="30"
+          height="30"
+          className="mr-[10px] rounded-full object-cover"
         />
       </Menu.Button>
       <Transition

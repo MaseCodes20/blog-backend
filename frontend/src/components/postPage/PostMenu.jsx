@@ -9,7 +9,6 @@ import {
 } from "@heroicons/react/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import DeletePostButton from "./DeletePostButton";
 import { useNavigate } from "react-router-dom";
 import { deletePost, reset } from "../../features/post/postsSlice";
 import { updateUser } from "../../features/users/usersSlice";
@@ -78,7 +77,15 @@ function PostMenu({ post, author }) {
     }
 
     dispatch(reset());
-  }, [isSuccess, isError, message, dispatch, navigate]);
+  }, [
+    isSuccess,
+    isError,
+    message,
+    deletedPost?._id,
+    postId,
+    dispatch,
+    navigate,
+  ]);
 
   return (
     <Menu as="div" className="relative">

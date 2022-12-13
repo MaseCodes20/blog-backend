@@ -1,6 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import StartWritingButton from "./StartWritingButton";
+import { Triangle } from "react-loader-spinner";
 
 function StartSection() {
   return (
@@ -23,7 +23,19 @@ function StartSection() {
 
           <StartWritingButton buttonColors={`creatorsButtonStart`} />
         </div>
-        <div className="flex-[2] p-10">image</div>
+        <div className="flex-[2] w-full p-10">
+          <div className="flex items-center justify-center h-full">
+            <Triangle
+              height="200"
+              width="200"
+              color="#000000"
+              ariaLabel="triangle-loading"
+              wrapperStyle={{}}
+              wrapperClassName=""
+              visible={true}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

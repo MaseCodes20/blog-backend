@@ -37,7 +37,7 @@ function DeletePostButton(props) {
     }
 
     dispatch(reset());
-  }, [isSuccess, isError, message, dispatch, navigate]);
+  }, [isSuccess, isError, message, deletedPost, dispatch, navigate]);
 
   return (
     <button

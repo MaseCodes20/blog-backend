@@ -51,7 +51,7 @@ function Header() {
           {user ? (
             <>
               <Link to="/tags">
-                <TagIcon className="h-7 mx-5" />
+                <TagIcon className="h-6 md:h-7 mx-5" />
               </Link>
               <UserMenu />
             </>

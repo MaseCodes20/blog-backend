@@ -104,7 +104,7 @@ function PostModalForm() {
     }
 
     dispatch(reset());
-  }, [message, isError, isSuccess, dispatch, navigate]);
+  }, [message, isError, isSuccess, newPost, dispatch, navigate]);
 
   return (
     <form className="my-5 w-full h-full" onSubmit={submitForm}>

@@ -23,7 +23,7 @@ function SuggestedBlog({ suggestUser }) {
 
         <div className="w-[65px] lg:w-[80px]">
           <p className="text-xs w- lg:text-sm truncate">{suggestUser?.name}</p>
-          <p className="text-[10px] lg:text-xs text-gray-700 truncate">
+          <p className="text-[10px] lg:text-xs font-light text-gray-700 truncate">
             {suggestUser?.username}
           </p>
         </div>
