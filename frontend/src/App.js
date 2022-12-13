@@ -8,6 +8,7 @@ import { allUsers } from "./features/users/usersSlice";
 import { useDispatch } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
+import Spinner from "./components/spinners/Spinner";
 
 const OurStory = lazy(() => import("./pages/OurStory"));
 const Creators = lazy(() => import("./pages/Creators"));
@@ -49,7 +50,7 @@ function App() {
           <Route
             path="/about"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <OurStory />
               </Suspense>
             }
@@ -58,7 +59,7 @@ function App() {
           <Route
             path="/creators"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <Creators />
               </Suspense>
             }
@@ -67,7 +68,7 @@ function App() {
           <Route
             path="/post/:id"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <PostPage />
               </Suspense>
             }
@@ -76,7 +77,7 @@ function App() {
           <Route
             path="/profile/:id"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <AuthorProfilePage />
               </Suspense>
             }
@@ -85,7 +86,7 @@ function App() {
           <Route
             path="/blog-terms-of-service"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <BlogTermsOfService />
               </Suspense>
             }
@@ -94,7 +95,7 @@ function App() {
           <Route
             path="/blog-privacy-policy"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 <BlogPrivacyPolicy />
               </Suspense>
             }
@@ -103,7 +104,7 @@ function App() {
           <Route
             path="/tags"
             element={
-              <Suspense fallback={<h1>Loading...</h1>}>
+              <Suspense fallback={<Spinner />}>
                 {" "}
                 <TagsPage />
               </Suspense>
@@ -114,7 +115,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<Spinner />}>
                   <ProfilePage />
                 </Suspense>
               </ProtectedRoute>
@@ -124,7 +125,7 @@ function App() {
             path="/bookmarks"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<Spinner />}>
                   <BookmarksPage />
                 </Suspense>
               </ProtectedRoute>
@@ -134,7 +135,7 @@ function App() {
             path="/likes"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<Spinner />}>
                   <LikesPage />
                 </Suspense>
               </ProtectedRoute>
@@ -144,7 +145,7 @@ function App() {
             path="/following"
             element={
               <ProtectedRoute>
-                <Suspense fallback={<h1>Loading...</h1>}>
+                <Suspense fallback={<Spinner />}>
                   <FollowingPage />
                 </Suspense>
               </ProtectedRoute>
@@ -152,19 +153,19 @@ function App() {
           />
         </Routes>
 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Spinner />}>
           <PostModal />
         </Suspense>
 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Spinner />}>
           <ShareModal />
         </Suspense>
 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Spinner />}>
           <EditProfileModal />
         </Suspense>
 
-        <Suspense fallback={<h1>Loading...</h1>}>
+        <Suspense fallback={<Spinner />}>
           <ConnectModal />
         </Suspense>
       </Router>

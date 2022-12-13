@@ -59,17 +59,15 @@ function Header() {
             <>
               <MobileMenu />
 
-              <Link to="/about" className="mr-5 hidden lg:block">
+              <Link to="/about" className="hidden lg:block mr-5 ">
                 Our Story
               </Link>
 
-              <Link className="hidden lg:block">Membership</Link>
-
-              <Link to="/creators" className="hidden lg:block">
+              <Link to="/creators" className="hidden lg:block mr-5">
                 Write
               </Link>
               <button
-                className="hidden lg:block"
+                className="hidden lg:block mr-5"
                 onClick={() => {
                   dispatch(open());
                   dispatch(toggleTrue());

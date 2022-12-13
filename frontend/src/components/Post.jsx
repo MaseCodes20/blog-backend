@@ -54,7 +54,7 @@ function Post({ postId }) {
               {post?.title}
             </h1>
 
-            <p className="text-sm md:text-[20px] truncate max-w-[280px] md:w-full">
+            <p className="text-sm md:text-[20px] truncate max-w-[280px] md:max-w-full">
               {post?.content}
             </p>
 
