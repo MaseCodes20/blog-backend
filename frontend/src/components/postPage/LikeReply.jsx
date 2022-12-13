@@ -1,6 +1,7 @@
 import { HeartIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { open } from "../../features/modals/connectModalSlice";
 import { updatePostComments } from "../../features/post/postsSlice";
 
 function LikeReply({ reply }) {
@@ -79,7 +80,7 @@ function LikeReply({ reply }) {
     }
   };
   return (
-    <button onClick={toggleLike}>
+    <button onClick={() => (user ? toggleLike() : dispatch(open()))}>
       <HeartIcon
         className={`h-4 px-5 ${userHasLiked && "fill-red-500 text-red-500"}`}
       />

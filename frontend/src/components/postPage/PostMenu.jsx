@@ -15,6 +15,7 @@ import { deletePost, reset } from "../../features/post/postsSlice";
 import { updateUser } from "../../features/users/usersSlice";
 import { editPost } from "../../features/modals/postModalSlice";
 import { openShareModal } from "../../features/modals/ShareModalSlice";
+import { open } from "../../features/modals/connectModalSlice";
 
 function PostMenu({ post, author }) {
   const { user } = useSelector((state) => state.auth);
@@ -130,8 +131,12 @@ function PostMenu({ post, author }) {
                   {({ active }) => (
                     <button
                       onClick={() => {
-                        removePost();
-                        bookmarkPost();
+                        if (user) {
+                          removePost();
+                          bookmarkPost();
+                        } else {
+                          dispatch(open());
+                        }
                       }}
                       className={`${
                         active ? "bg-violet-500 text-white" : "text-gray-900"
@@ -149,7 +154,13 @@ function PostMenu({ post, author }) {
             <Menu.Item>
               {({ active }) => (
                 <button
-                  onClick={bookmarkPost}
+                  onClick={() => {
+                    if (user) {
+                      bookmarkPost();
+                    } else {
+                      dispatch(open());
+                    }
+                  }}
                   className={`${
                     active ? "bg-violet-500 text-white" : "text-gray-900"
                   } group flex w-full items-center px-2 py-2 text-sm`}

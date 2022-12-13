@@ -1,6 +1,7 @@
 import { PencilAltIcon, TrashIcon } from "@heroicons/react/outline";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { open } from "../../features/modals/connectModalSlice";
 import { updatePostComments } from "../../features/post/postsSlice";
 
 function CommentOptions({ userId, commentId, toggleEdit, toggleReply }) {
@@ -13,7 +14,7 @@ function CommentOptions({ userId, commentId, toggleEdit, toggleReply }) {
     )
   );
 
-  const dipatch = useDispatch();
+  const dispatch = useDispatch();
 
   const deleteComment = () => {
     if (userId !== user?._id) return;
@@ -28,7 +29,7 @@ function CommentOptions({ userId, commentId, toggleEdit, toggleReply }) {
       postId: post?._id,
     };
 
-    dipatch(updatePostComments(data));
+    dispatch(updatePostComments(data));
   };
 
   return (
@@ -52,7 +53,7 @@ function CommentOptions({ userId, commentId, toggleEdit, toggleReply }) {
         </div>
       ) : (
         <button
-          onClick={() => toggleReply()}
+          onClick={() => (user ? toggleReply() : dispatch(open()))}
           className="text-sm text-gray-600 mr-3"
         >
           reply

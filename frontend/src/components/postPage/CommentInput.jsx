@@ -3,19 +3,24 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { open } from "../../features/modals/connectModalSlice";
 import { reset, updatePostComments } from "../../features/post/postsSlice";
 
 function CommentInput({ post }) {
   const [comment, setComment] = useState("");
 
   const { user } = useSelector((state) => state.auth);
-  const { isError, isSuccess, message } = useSelector((state) => state.posts);
+  const { isError, message } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
   const submitComment = (e) => {
     e.preventDefault();
 
+    if (!user) {
+      dispatch(open());
+      return;
+    }
     if (comment === "") return;
 
     const data = {
