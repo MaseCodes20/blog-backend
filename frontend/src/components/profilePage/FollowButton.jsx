@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
+import { open } from "../../features/modals/connectModalSlice";
 import { updateUser } from "../../features/users/usersSlice";
 
 function FollowButton({ otherUser }) {
@@ -44,7 +45,7 @@ function FollowButton({ otherUser }) {
 
   return (
     <button
-      onClick={toggleFollow}
+      onClick={() => (user ? toggleFollow() : dispatch(open()))}
       className={`${
         location === "/"
           ? "w-[48px] h-[18px] md:text-[10px] "
