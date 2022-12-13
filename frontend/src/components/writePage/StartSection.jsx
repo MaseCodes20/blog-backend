@@ -5,8 +5,8 @@ import StartWritingButton from "./StartWritingButton";
 function StartSection() {
   return (
     <section className="bg-[#F24D2E]">
-      <div className="flex pageContainer">
-        <div className="flex-[6] p-10 border-r-[1px] border-black">
+      <div className="lg:flex pageContainer">
+        <div className="flex-[6] p-10 lg:border-r-[1px] border-black">
           <h1 className="uppercase mt-14 text-white font-bold text-[11px] tracking-[0.75em]">
             start a blog for free
           </h1>

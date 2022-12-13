@@ -16,8 +16,8 @@ function JoinSection() {
 
   return (
     <section className="bg-black text-white">
-      <div className="flex pageContainer py-10">
-        <div className="flex-[2]">
+      <div className="lg:flex pageContainer py-10">
+        <div className="flex-[2] mb-5 lg:mb-0">
           <p className="text-[78px] max-w-[575px] leading-none">
             Join a network of curious minds.
           </p>

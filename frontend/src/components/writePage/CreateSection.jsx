@@ -6,7 +6,7 @@ function CreateSection() {
     <section className="bg-white">
       <div className="pageContainer text-center">
         <div className="p-10">
-          <h1 className="uppercase mt-14 font-bold text-[100px] tracking-[0.75em]">
+          <h1 className="uppercase mt-14 font-bold text-[18px] lg:text-[100px] tracking-[0.75em]">
             Create your space
           </h1>
 
