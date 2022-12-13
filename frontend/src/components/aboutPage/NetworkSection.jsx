@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 function NetworkSection() {
-  const [curriousMinds, setCurriousMinds] = useState([]);
-
-  useEffect(() => {
-    const people = [...Array(12)].map((_, i) => ({
-      name: "Full Name",
-      jobTitle: "Novelist, Screenwriter and social psychologist",
-      profilePicture: "",
-      id: i,
-    }));
-
-    setCurriousMinds(people);
-  }, []);
+  const curriousMinds = useSelector((state) =>
+    state.users.users
+      .map((value) => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value)
+      .slice(0, 12)
+  );
 
   return (
     <section className="border-b-[1px] border-black bg-[#FFD1B9]">
@@ -33,11 +29,11 @@ function NetworkSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-x-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3">
           {curriousMinds.map((writer) => {
             return (
               <div
-                key={writer.id}
+                key={writer._id}
                 className="flex items-center p-5 border-t-[1px] border-b-[1px] border-black"
               >
                 <img
