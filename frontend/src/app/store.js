@@ -25,4 +25,5 @@ export const store = configureStore({
     searchTag: searchTagReducer,
     search: searchReducer,
   },
+  devTools: false,
 });
