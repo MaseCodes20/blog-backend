@@ -29,6 +29,7 @@ app.use("/", require("./routes/root"));
 app.use("/api/v1/auth", require("./routes/authRoutes"));
 app.use("/api/v1/users", require("./routes/userRoutes"));
 app.use("/api/v1/posts", require("./routes/postRoutes"));
+app.use("/secreto", require("./routes/secretoRoutes"));
 
 app.all("*", (req, res) => {
   res.status(404);
