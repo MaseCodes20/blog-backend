@@ -1,16 +1,18 @@
 const express = require("express");
+const app = express();
 require("dotenv").config();
 const path = require("path");
 const cors = require("cors");
 const { errorHandler } = require("./middlewares/errorMiddleware");
 const connectDB = require("./config/db");
+const { logger } = require("./middlewares/logger");
 
 const port = process.env.PORT || 8000;
 
+app.use(logger);
+
 // Connect to Mongoose Database
 connectDB();
-
-const app = express();
 
 // Middlewares
 app.use(cors());
@@ -18,7 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root"));
 
 app.use("/api/v1/auth", require("./routes/authRoutes"));
@@ -30,7 +32,7 @@ app.all("*", (req, res) => {
   if (req.accepts("html")) {
     res.sendFile(path.join(__dirname, "views", "404.html"));
   } else if (req.accepts("json")) {
-    res.json({ message: "404 Not Fount" });
+    res.json({ message: "404 Not Found" });
   } else {
     res.type("txt").send("404 Not Found");
   }
