@@ -3,9 +3,11 @@ const app = express();
 require("dotenv").config();
 const path = require("path");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 const { errorHandler } = require("./middlewares/errorMiddleware");
 const connectDB = require("./config/db");
 const { logger } = require("./middlewares/logger");
+const corsOptions = require("./config/corsOptions");
 
 const port = process.env.PORT || 8000;
 
@@ -15,8 +17,9 @@ app.use(logger);
 connectDB();
 
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
