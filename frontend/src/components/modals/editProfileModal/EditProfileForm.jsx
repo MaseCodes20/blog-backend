@@ -4,8 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { API_URL, CLOUDINARY_ROUTE } from "../../../api/config";
 import { closeEditProfileModal } from "../../../features/modals/editProfileModalSlice";
 import { reset, updateUser } from "../../../features/users/usersSlice";
+import useFetchCloudinaryData from "../../../hooks/useFetchCloudinaryData";
 
 function EditProfileFrom({ user }) {
   const [selectedBannerImage, setSelectedBannerImage] = useState(null);
@@ -29,16 +31,18 @@ function EditProfileFrom({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const data = useFetchCloudinaryData(userAuth?.token);
+
   let usernameExists = !!userName;
 
-  const getImageUrl = async () => {
+  const getBannerImageUrl = async () => {
     const formData = new FormData();
     formData.append("file", selectedBannerImage);
-    formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
+    formData.append("upload_preset", data?.key);
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`,
+        `https://api.cloudinary.com/v1_1/${data?.cloudName}/upload`,
         formData
       );
 
@@ -51,11 +55,11 @@ function EditProfileFrom({ user }) {
   const getProfilePictureUrl = async () => {
     const formData = new FormData();
     formData.append("file", selectedProfilePicture);
-    formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
+    formData.append("upload_preset", data?.key);
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`,
+        `https://api.cloudinary.com/v1_1/${data?.cloudName}/upload`,
         formData
       );
 
@@ -118,12 +122,11 @@ function EditProfileFrom({ user }) {
     }
 
     if (selectedBannerImage) {
-      const imageURL = await getImageUrl();
+      const imageURL = await getBannerImageUrl();
       data.userData.banner = imageURL;
       dispatch(updateUser(data));
     }
 
-    console.log(data);
     dispatch(updateUser(data));
   };
 

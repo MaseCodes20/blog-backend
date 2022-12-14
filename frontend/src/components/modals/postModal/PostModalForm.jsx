@@ -9,6 +9,7 @@ import { addPost, reset } from "../../../features/post/postsSlice";
 import { toast } from "react-toastify";
 import { closePostModal } from "../../../features/modals/postModalSlice";
 import { useNavigate } from "react-router-dom";
+import useFetchCloudinaryData from "../../../hooks/useFetchCloudinaryData";
 
 function PostModalForm() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -30,6 +31,8 @@ function PostModalForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const data = useFetchCloudinaryData(user?.token);
+
   const handleChange = (e) => {
     setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -41,11 +44,11 @@ function PostModalForm() {
   const getImageUrl = async () => {
     const formData = new FormData();
     formData.append("file", selectedImage);
-    formData.append("upload_preset", process.env.REACT_APP_CLOUDINARY_KEY);
+    formData.append("upload_preset", data?.key);
 
     try {
       const response = await axios.post(
-        `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUD_NAME}/upload`,
+        `https://api.cloudinary.com/v1_1/${data?.cloudName}/upload`,
         formData
       );
 
