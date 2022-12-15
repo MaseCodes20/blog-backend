@@ -6,7 +6,7 @@ const fetch = require("node-fetch");
 // @access Private
 const getCloudinary = asyncHandler(async (req, res) => {
   const cloudinaryKey = process.env.CLOUDINARY_KEY;
-  const cName = process.env.REACT_APP_CLOUD_NAME;
+  const cName = process.env.CLOUD_NAME;
 
   res.json({ key: cloudinaryKey, cloudName: cName });
 });
