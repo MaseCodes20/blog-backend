@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import { API_URL, USERS_ROUTE } from "../../../api/config";
 import SuggestedBlogs from "./SuggestedBlogs";
 
 function SuggestBlogsSection() {
@@ -14,7 +15,7 @@ function SuggestBlogsSection() {
 
     const fetchSuggestedBlogs = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/users", {
+        const response = await axios.get(`${API_URL}${USERS_ROUTE}`, {
           signal,
         });
 

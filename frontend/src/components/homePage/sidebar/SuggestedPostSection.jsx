@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { API_URL, POSTS_ROUTE } from "../../../api/config";
 import SuggestedPost from "./SuggestedPost";
 
 function SuggestedPostSection() {
@@ -15,7 +16,7 @@ function SuggestedPostSection() {
 
     const fetchRandomPost = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/api/v1/posts", {
+        const response = await axios.get(`${API_URL}${POSTS_ROUTE}`, {
           signal,
         });
         const suggestedPost = response.data
