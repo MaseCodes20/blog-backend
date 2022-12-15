@@ -43,7 +43,13 @@ function App() {
     dispatch(allPosts());
   }, []);
 
-  if (users.length < 1 && posts.length < 1) return <Spinner />;
+  // If you have data in your database and you want to wait until the data has been loaded to display the page
+  if (
+    process.env.NODE_ENV === "production" &&
+    users.length < 1 &&
+    posts.length < 1
+  )
+    return <Spinner />;
 
   return (
     <>

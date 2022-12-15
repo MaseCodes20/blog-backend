@@ -45,7 +45,7 @@ function SuggestBlogsSection() {
 
   return (
     <div className="w-full min-h-[338px] p-3 mb-5">
-      <h2 className="font-semibold text-[20px]  mb-3">Check out thes blogs</h2>
+      <h2 className="font-semibold text-[20px]  mb-3">Check out these blogs</h2>
 
       {/* Profile Cards */}
       <SuggestedBlogs suggestedUsers={suggestedBlogs} />
