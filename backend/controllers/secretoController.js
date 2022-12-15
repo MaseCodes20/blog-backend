@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const fetch = require("node-fetch");
 
 // @desx Get cloudinary
 // @route Get /secreto/cloudinary
