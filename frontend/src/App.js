@@ -5,7 +5,7 @@ import { ToastContainer, Slide } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { allUsers } from "./features/users/usersSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
 import Spinner from "./components/spinners/Spinner";
@@ -35,10 +35,16 @@ const ConnectModal = lazy(() =>
 function App() {
   const dispatch = useDispatch();
 
+  const { users } = useSelector((state) => state.users);
+  const { posts } = useSelector((state) => state.posts);
+
   useEffect(() => {
     dispatch(allUsers());
     dispatch(allPosts());
   }, []);
+
+  if (users.length < 1 && posts.length < 1) return <Spinner />;
+
   return (
     <>
       <Router>
