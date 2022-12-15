@@ -1,4 +1,5 @@
 import React from "react";
+import Footer from "../Footer";
 import SuggestBlogsSection from "./sidebar/SuggestBlogsSection";
 import SuggestedPost from "./sidebar/SuggestedPostSection";
 
@@ -9,6 +10,8 @@ function Sidebar() {
       <SuggestBlogsSection />
 
       <SuggestedPost />
+
+      <Footer />
     </div>
   );
 }

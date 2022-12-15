@@ -4,7 +4,10 @@
 
 @layer components {
   .pageContainer {
-    @apply xl:mx-auto xl:max-w-6xl mx-2;
+    @apply relative min-h-[calc(100vh-75px)] xl:mx-auto xl:max-w-6xl mx-2;
+  }
+  .contentWrapper {
+    @apply pb-[2.5em];
   }
   .pageTitle {
     @apply text-xl md:text-3xl lg:text-5xl font-bold mt-10;

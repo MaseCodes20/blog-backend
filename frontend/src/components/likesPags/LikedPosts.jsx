@@ -13,13 +13,19 @@ function LikedPosts() {
   );
 
   return (
-    <div className="my-5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        {userLikes?.map((like) => {
-          return <Post key={like?._id} postId={like?._id} />;
-        })}
-      </div>
-    </div>
+    <>
+      {userLikes.length < 1 ? (
+        <div className="flex items-center justify-center w-full h-[300px]">
+          <p>Once you liked a post, you'll see them here</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 my-5">
+          {userLikes?.map((like) => {
+            return <Post key={like?._id} postId={like?._id} />;
+          })}
+        </div>
+      )}
+    </>
   );
 }
 

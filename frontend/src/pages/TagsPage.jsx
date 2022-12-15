@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import Post from "../components/Post";
+import Footer from "../components/Footer";
+import TaggedPosts from "../components/tags/TaggedPosts";
 import Tags from "../components/tags/Tags";
 
 function TagsPage() {
@@ -15,26 +16,16 @@ function TagsPage() {
 
   return (
     <div className="pageContainer">
-      <h1 className="pageTitle">Tags</h1>
+      <div className="contentWrapper">
+        <h1 className="pageTitle">Tags</h1>
 
-      <Tags tags={tags} />
+        <Tags tags={tags} />
 
-      {/* Posts */}
-      <div className="grid grid-cols-l md:grid-cols-2 justify-items-center my-10 gap-5">
-        {posts
-          ?.filter((value) => {
-            if (searchTag === "") {
-              return value;
-            } else if (value.tags.includes(searchTag)) {
-              return value;
-            } else {
-              return null;
-            }
-          })
-          .map((post) => (
-            <Post key={post._id} postId={post._id} />
-          ))}
+        {/* Posts */}
+        <TaggedPosts searchTag={searchTag} posts={posts} />
       </div>
+
+      <Footer />
     </div>
   );
 }

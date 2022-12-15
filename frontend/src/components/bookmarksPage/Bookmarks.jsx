@@ -18,12 +18,13 @@ function Bookmarks() {
 
   return (
     <>
+      {" "}
       {userBookmarks?.length < 1 ? (
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center w-full h-[300px]">
           <p>Once you bookmark a post, you'll see them here</p>
         </div>
       ) : (
-        <>
+        <div className="grid grid-cols-l md:grid-cols-2 justify-items-center my-10 gap-5">
           {sortedBookmarks?.map((bookmarks) => {
             return (
               <Post
@@ -33,7 +34,7 @@ function Bookmarks() {
               />
             );
           })}
-        </>
+        </div>
       )}
     </>
   );

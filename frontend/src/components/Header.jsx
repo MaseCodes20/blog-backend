@@ -40,7 +40,7 @@ function Header() {
       className={`h-[75px] border-b-[1px] border-black sticky top-0 z-10
         ${bgColor ? bgColor : headerColor || "bg-white"}`}
     >
-      <div className="flex items-center justify-between py-[25px]  pageContainer">
+      <div className="flex items-center justify-between py-[25px]  relative xl:mx-auto xl:max-w-6xl mx-2">
         <Link to="/" className="mr-5">
           <h1>devLog(s)</h1>
         </Link>

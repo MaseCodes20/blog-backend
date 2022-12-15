@@ -4,7 +4,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API_URL, CLOUDINARY_ROUTE } from "../../../api/config";
 import { closeEditProfileModal } from "../../../features/modals/editProfileModalSlice";
 import { reset, updateUser } from "../../../features/users/usersSlice";
 import useFetchCloudinaryData from "../../../hooks/useFetchCloudinaryData";

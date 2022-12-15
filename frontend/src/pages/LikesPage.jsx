@@ -1,12 +1,16 @@
 import React from "react";
+import Footer from "../components/Footer";
 import LikedPosts from "../components/likesPags/LikedPosts";
 
 function LikesPage() {
   return (
     <div className="pageContainer">
-      <h1 className="pageTitle">Likes</h1>
+      <div className="contentWrapper">
+        <h1 className="pageTitle">Likes</h1>
 
-      <LikedPosts />
+        <LikedPosts />
+      </div>
+      <Footer />
     </div>
   );
 }
