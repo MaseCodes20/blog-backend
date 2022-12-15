@@ -1,4 +1,5 @@
-export const API_URL = "http://localhost:8080";
+export const API_URL = "https://mcblogwebsite-api.onrender.com";
+// export const API_URL = "http://localhost:8080";
 
 export const AUTH_ROUTE = "/api/v1/auth/";
 
