@@ -42,7 +42,7 @@ function Header() {
     >
       <div className="flex items-center justify-between py-[25px]  relative xl:mx-auto xl:max-w-6xl mx-2">
         <Link to="/" className="mr-5">
-          <h1>devLog(s)</h1>
+          <h1>youBlog</h1>
         </Link>
 
         <SearchBar />
