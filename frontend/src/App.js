@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { lazy, Suspense, useEffect } from "react";
 import { allPosts } from "./features/post/postsSlice";
 import Spinner from "./components/spinners/Spinner";
+import ServerSpinner from "./components/spinners/ServerSpinner";
 
 const OurStory = lazy(() => import("./pages/OurStory"));
 const Creators = lazy(() => import("./pages/Creators"));
@@ -49,7 +50,7 @@ function App() {
     users.length < 1 &&
     posts.length < 1
   )
-    return <Spinner />;
+    return <ServerSpinner />;
 
   return (
     <>
