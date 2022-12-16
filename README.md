@@ -1,7 +1,7 @@
 # Blog Website  
 This is a MERN app project  built by [Todd Mason](https://www.masecodes.com/)  
 Inspired by websites like Medium, Tumblr and Instagram  
-To view the app click on this [link](https://mcblogwebsite-api.onrender.com)  
+To view the app click on this [link](https://mcblogwebsite.onrender.com)  
 
 ### Techstack
 - MongoDB
