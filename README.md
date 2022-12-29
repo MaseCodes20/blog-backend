@@ -12,7 +12,8 @@ To view the app click on this [link](https://mcblogwebsite.onrender.com)
 - Redux toolkit
 
 
-![BlogWebsite home page](https://user-images.githubusercontent.com/95643884/207961232-43d8ec46-053b-48bf-be88-86dd064de914.png)
+![BlogWebsite home page](https://user-images.githubusercontent.com/95643884/208163926-64e1ed7e-139e-4991-9291-1ef1f326acb1.png)
+
 
 
 ## Getting Started
