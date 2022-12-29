@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { calcReadingTime } from "../utils/calcReadingTime";
 
 function Post({ postId }) {
   const post = useSelector((state) =>
@@ -17,6 +18,8 @@ function Post({ postId }) {
     month: "short",
     day: "numeric",
   };
+
+  const readingTime = calcReadingTime(post?.content);
 
   return (
     <>
@@ -58,11 +61,19 @@ function Post({ postId }) {
               {post?.content}
             </p>
 
-            {post?.createdAt && (
+            <div className="flex items-center text-[#757575] mt-2">
+              {post?.createdAt && (
+                <p className="text-xs md:text-base">
+                  {date.toLocaleString(undefined, options)}
+                </p>
+              )}
+
+              <p className="mx-3">•</p>
+
               <p className="text-xs md:text-base">
-                {date.toLocaleString(undefined, options)}
+                {`${readingTime} min read`}
               </p>
-            )}
+            </div>
           </div>
         </Link>
       )}

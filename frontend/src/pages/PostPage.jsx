@@ -7,6 +7,7 @@ import PostComments from "../components/postPage/PostComments";
 import PostMenu from "../components/postPage/PostMenu";
 import Tags from "../components/tags/Tags";
 import { clearSearchTag } from "../features/search/SearchTagSlice";
+import { calcReadingTime } from "../utils/calcReadingTime";
 
 function PostPage() {
   const location = useLocation();
@@ -30,6 +31,8 @@ function PostPage() {
   };
 
   const paragraphs = postFound?.content.split(/\r?\n|\r|\n/g);
+
+  const readingTime = calcReadingTime(postFound?.content);
 
   let totalLikes = postFound?.likes.length;
   const numberFormat = new Intl.NumberFormat("en-US");
@@ -66,6 +69,8 @@ function PostPage() {
           </Link>
 
           <p className="mr-5">{date.toLocaleString(undefined, options)}</p>
+
+          <p className="mr-5">{`${readingTime} min read`}</p>
 
           {totalLikes >= 1 && (
             <p className="text-gray-600 mr-3">
